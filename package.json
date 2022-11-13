@@ -1,0 +1,16 @@
+{
+	"name": "framework-ststm8spl-c-splitter",
+	"version": "0.0.1",
+	"description": "Standard peripheral library for ST STM8S/A microcontrollers",
+	"keywords": [
+		"framework",
+		"hal",
+		"stm8",
+		"st"
+	],
+	"homepage": "https://github.com/Zelberor/framework-ststm8spl-c-splitter",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Zelberor/framework-ststm8spl-c-splitter"
+	}
+}
