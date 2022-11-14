@@ -16,8 +16,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.
@@ -72,7 +72,7 @@ void EXTI_SetExtIntSensitivity(EXTI_Port_TypeDef Port, EXTI_Sensitivity_TypeDef 
   /* Check function parameters */
   assert_param(IS_EXTI_PORT_OK(Port));
   assert_param(IS_EXTI_SENSITIVITY_OK(SensitivityValue));
-  
+
   /* Set external interrupt sensitivity */
   switch (Port)
   {
@@ -112,7 +112,7 @@ void EXTI_SetTLISensitivity(EXTI_TLISensitivity_TypeDef SensitivityValue)
 {
   /* Check function parameters */
   assert_param(IS_EXTI_TLISENSITIVITY_OK(SensitivityValue));
-  
+
   /* Set TLI interrupt sensitivity */
   EXTI->CR2 &= (uint8_t)(~EXTI_CR2_TLIS);
   EXTI->CR2 |= (uint8_t)(SensitivityValue);
@@ -126,10 +126,10 @@ void EXTI_SetTLISensitivity(EXTI_TLISensitivity_TypeDef SensitivityValue)
 EXTI_Sensitivity_TypeDef EXTI_GetExtIntSensitivity(EXTI_Port_TypeDef Port)
 {
   uint8_t value = 0;
-  
+
   /* Check function parameters */
   assert_param(IS_EXTI_PORT_OK(Port));
-  
+
   switch (Port)
   {
   case EXTI_PORT_GPIOA:
@@ -150,7 +150,7 @@ EXTI_Sensitivity_TypeDef EXTI_GetExtIntSensitivity(EXTI_Port_TypeDef Port)
   default:
     break;
   }
-  
+
   return((EXTI_Sensitivity_TypeDef)value);
 }
 
@@ -162,20 +162,20 @@ EXTI_Sensitivity_TypeDef EXTI_GetExtIntSensitivity(EXTI_Port_TypeDef Port)
 EXTI_TLISensitivity_TypeDef EXTI_GetTLISensitivity(void)
 {
   uint8_t value = 0;
-  
+
   /* Get TLI interrupt sensitivity */
   value = (uint8_t)(EXTI->CR2 & EXTI_CR2_TLIS);
-  
+
   return((EXTI_TLISensitivity_TypeDef)value);
 }
 
 /**
   * @}
   */
-  
+
 /**
   * @}
   */
-  
+
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -16,8 +16,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.
@@ -53,10 +53,10 @@ void TIM3_DeInit(void)
   TIM3->CR1 = (uint8_t)TIM3_CR1_RESET_VALUE;
   TIM3->IER = (uint8_t)TIM3_IER_RESET_VALUE;
   TIM3->SR2 = (uint8_t)TIM3_SR2_RESET_VALUE;
-  
+
   /* Disable channels */
   TIM3->CCER1 = (uint8_t)TIM3_CCER1_RESET_VALUE;
-  
+
   /* Then reset channel registers: it also works if lock level is equal to 2 or 3 */
   TIM3->CCER1 = (uint8_t)TIM3_CCER1_RESET_VALUE;
   TIM3->CCMR1 = (uint8_t)TIM3_CCMR1_RESET_VALUE;
@@ -106,15 +106,15 @@ void TIM3_OC1Init(TIM3_OCMode_TypeDef TIM3_OCMode,
   assert_param(IS_TIM3_OC_MODE_OK(TIM3_OCMode));
   assert_param(IS_TIM3_OUTPUT_STATE_OK(TIM3_OutputState));
   assert_param(IS_TIM3_OC_POLARITY_OK(TIM3_OCPolarity));
-  
+
   /* Disable the Channel 1: Reset the CCE Bit, Set the Output State , the Output Polarity */
   TIM3->CCER1 &= (uint8_t)(~( TIM3_CCER1_CC1E | TIM3_CCER1_CC1P));
   /* Set the Output State &  Set the Output Polarity  */
   TIM3->CCER1 |= (uint8_t)((uint8_t)(TIM3_OutputState  & TIM3_CCER1_CC1E   ) | (uint8_t)(TIM3_OCPolarity   & TIM3_CCER1_CC1P   ));
-  
+
   /* Reset the Output Compare Bits & Set the Output Compare Mode */
   TIM3->CCMR1 = (uint8_t)((uint8_t)(TIM3->CCMR1 & (uint8_t)(~TIM3_CCMR_OCM)) | (uint8_t)TIM3_OCMode);
-  
+
   /* Set the Pulse value */
   TIM3->CCR1H = (uint8_t)(TIM3_Pulse >> 8);
   TIM3->CCR1L = (uint8_t)(TIM3_Pulse);
@@ -137,18 +137,18 @@ void TIM3_OC2Init(TIM3_OCMode_TypeDef TIM3_OCMode,
   assert_param(IS_TIM3_OC_MODE_OK(TIM3_OCMode));
   assert_param(IS_TIM3_OUTPUT_STATE_OK(TIM3_OutputState));
   assert_param(IS_TIM3_OC_POLARITY_OK(TIM3_OCPolarity));
-  
-  
+
+
   /* Disable the Channel 1: Reset the CCE Bit, Set the Output State, the Output Polarity */
   TIM3->CCER1 &= (uint8_t)(~( TIM3_CCER1_CC2E |  TIM3_CCER1_CC2P ));
   /* Set the Output State & Set the Output Polarity */
   TIM3->CCER1 |= (uint8_t)((uint8_t)(TIM3_OutputState  & TIM3_CCER1_CC2E   ) | (uint8_t)(TIM3_OCPolarity   & TIM3_CCER1_CC2P ));
-  
-  
+
+
   /* Reset the Output Compare Bits & Set the Output Compare Mode */
   TIM3->CCMR2 = (uint8_t)((uint8_t)(TIM3->CCMR2 & (uint8_t)(~TIM3_CCMR_OCM)) | (uint8_t)TIM3_OCMode);
-  
-  
+
+
   /* Set the Pulse value */
   TIM3->CCR2H = (uint8_t)(TIM3_Pulse >> 8);
   TIM3->CCR2L = (uint8_t)(TIM3_Pulse);
@@ -175,14 +175,14 @@ void TIM3_ICInit(TIM3_Channel_TypeDef TIM3_Channel,
   assert_param(IS_TIM3_IC_SELECTION_OK(TIM3_ICSelection));
   assert_param(IS_TIM3_IC_PRESCALER_OK(TIM3_ICPrescaler));
   assert_param(IS_TIM3_IC_FILTER_OK(TIM3_ICFilter));
-  
+
   if (TIM3_Channel != TIM3_CHANNEL_2)
   {
     /* TI1 Configuration */
     TI1_Config((uint8_t)TIM3_ICPolarity,
                (uint8_t)TIM3_ICSelection,
                (uint8_t)TIM3_ICFilter);
-    
+
     /* Set the Input Capture Prescaler value */
     TIM3_SetIC1Prescaler(TIM3_ICPrescaler);
   }
@@ -192,7 +192,7 @@ void TIM3_ICInit(TIM3_Channel_TypeDef TIM3_Channel,
     TI2_Config((uint8_t)TIM3_ICPolarity,
                (uint8_t)TIM3_ICSelection,
                (uint8_t)TIM3_ICFilter);
-    
+
     /* Set the Input Capture Prescaler value */
     TIM3_SetIC2Prescaler(TIM3_ICPrescaler);
   }
@@ -215,13 +215,13 @@ void TIM3_PWMIConfig(TIM3_Channel_TypeDef TIM3_Channel,
 {
   uint8_t icpolarity = (uint8_t)TIM3_ICPOLARITY_RISING;
   uint8_t icselection = (uint8_t)TIM3_ICSELECTION_DIRECTTI;
-  
+
   /* Check the parameters */
   assert_param(IS_TIM3_PWMI_CHANNEL_OK(TIM3_Channel));
   assert_param(IS_TIM3_IC_POLARITY_OK(TIM3_ICPolarity));
   assert_param(IS_TIM3_IC_SELECTION_OK(TIM3_ICSelection));
   assert_param(IS_TIM3_IC_PRESCALER_OK(TIM3_ICPrescaler));
-  
+
   /* Select the Opposite Input Polarity */
   if (TIM3_ICPolarity != TIM3_ICPOLARITY_FALLING)
   {
@@ -231,7 +231,7 @@ void TIM3_PWMIConfig(TIM3_Channel_TypeDef TIM3_Channel,
   {
     icpolarity = (uint8_t)TIM3_ICPOLARITY_RISING;
   }
-  
+
   /* Select the Opposite Input */
   if (TIM3_ICSelection == TIM3_ICSELECTION_DIRECTTI)
   {
@@ -241,19 +241,19 @@ void TIM3_PWMIConfig(TIM3_Channel_TypeDef TIM3_Channel,
   {
     icselection = (uint8_t)TIM3_ICSELECTION_DIRECTTI;
   }
-  
+
   if (TIM3_Channel != TIM3_CHANNEL_2)
   {
     /* TI1 Configuration */
     TI1_Config((uint8_t)TIM3_ICPolarity, (uint8_t)TIM3_ICSelection,
                (uint8_t)TIM3_ICFilter);
-    
+
     /* Set the Input Capture Prescaler value */
     TIM3_SetIC1Prescaler(TIM3_ICPrescaler);
-    
+
     /* TI2 Configuration */
     TI2_Config(icpolarity, icselection, TIM3_ICFilter);
-    
+
     /* Set the Input Capture Prescaler value */
     TIM3_SetIC2Prescaler(TIM3_ICPrescaler);
   }
@@ -262,13 +262,13 @@ void TIM3_PWMIConfig(TIM3_Channel_TypeDef TIM3_Channel,
     /* TI2 Configuration */
     TI2_Config((uint8_t)TIM3_ICPolarity, (uint8_t)TIM3_ICSelection,
                (uint8_t)TIM3_ICFilter);
-    
+
     /* Set the Input Capture Prescaler value */
     TIM3_SetIC2Prescaler(TIM3_ICPrescaler);
-    
+
     /* TI1 Configuration */
     TI1_Config(icpolarity, icselection, TIM3_ICFilter);
-    
+
     /* Set the Input Capture Prescaler value */
     TIM3_SetIC1Prescaler(TIM3_ICPrescaler);
   }
@@ -284,7 +284,7 @@ void TIM3_Cmd(FunctionalState NewState)
 {
   /* Check the parameters */
   assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-  
+
   /* set or Reset the CEN Bit */
   if (NewState != DISABLE)
   {
@@ -313,7 +313,7 @@ void TIM3_ITConfig(TIM3_IT_TypeDef TIM3_IT, FunctionalState NewState)
   /* Check the parameters */
   assert_param(IS_TIM3_IT_OK(TIM3_IT));
   assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-  
+
   if (NewState != DISABLE)
   {
     /* Enable the Interrupt sources */
@@ -336,7 +336,7 @@ void TIM3_UpdateDisableConfig(FunctionalState NewState)
 {
   /* Check the parameters */
   assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-  
+
   /* Set or Reset the UDIS Bit */
   if (NewState != DISABLE)
   {
@@ -360,7 +360,7 @@ void TIM3_UpdateRequestConfig(TIM3_UpdateSource_TypeDef TIM3_UpdateSource)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_UPDATE_SOURCE_OK(TIM3_UpdateSource));
-  
+
   /* Set or Reset the URS Bit */
   if (TIM3_UpdateSource != TIM3_UPDATESOURCE_GLOBAL)
   {
@@ -384,7 +384,7 @@ void TIM3_SelectOnePulseMode(TIM3_OPMode_TypeDef TIM3_OPMode)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_OPM_MODE_OK(TIM3_OPMode));
-  
+
   /* Set or Reset the OPM Bit */
   if (TIM3_OPMode != TIM3_OPMODE_REPETITIVE)
   {
@@ -430,10 +430,10 @@ void TIM3_PrescalerConfig(TIM3_Prescaler_TypeDef Prescaler,
   /* Check the parameters */
   assert_param(IS_TIM3_PRESCALER_RELOAD_OK(TIM3_PSCReloadMode));
   assert_param(IS_TIM3_PRESCALER_OK(Prescaler));
-  
+
   /* Set the Prescaler value */
   TIM3->PSCR = (uint8_t)Prescaler;
-  
+
   /* Set or reset the UG Bit */
   TIM3->EGR = (uint8_t)TIM3_PSCReloadMode;
 }
@@ -451,7 +451,7 @@ void TIM3_ForcedOC1Config(TIM3_ForcedAction_TypeDef TIM3_ForcedAction)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_FORCED_ACTION_OK(TIM3_ForcedAction));
-  
+
   /* Reset the OCM Bits & Configure the Forced output Mode */
   TIM3->CCMR1 =  (uint8_t)((uint8_t)(TIM3->CCMR1 & (uint8_t)(~TIM3_CCMR_OCM))  | (uint8_t)TIM3_ForcedAction);
 }
@@ -469,7 +469,7 @@ void TIM3_ForcedOC2Config(TIM3_ForcedAction_TypeDef TIM3_ForcedAction)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_FORCED_ACTION_OK(TIM3_ForcedAction));
-  
+
   /* Reset the OCM Bits & Configure the Forced output Mode */
   TIM3->CCMR2 =  (uint8_t)((uint8_t)(TIM3->CCMR2 & (uint8_t)(~TIM3_CCMR_OCM)) | (uint8_t)TIM3_ForcedAction);
 }
@@ -484,7 +484,7 @@ void TIM3_ARRPreloadConfig(FunctionalState NewState)
 {
   /* Check the parameters */
   assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-  
+
   /* Set or Reset the ARPE Bit */
   if (NewState != DISABLE)
   {
@@ -506,7 +506,7 @@ void TIM3_OC1PreloadConfig(FunctionalState NewState)
 {
   /* Check the parameters */
   assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-  
+
   /* Set or Reset the OC1PE Bit */
   if (NewState != DISABLE)
   {
@@ -528,7 +528,7 @@ void TIM3_OC2PreloadConfig(FunctionalState NewState)
 {
   /* Check the parameters */
   assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-  
+
   /* Set or Reset the OC2PE Bit */
   if (NewState != DISABLE)
   {
@@ -553,7 +553,7 @@ void TIM3_GenerateEvent(TIM3_EventSource_TypeDef TIM3_EventSource)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_EVENT_SOURCE_OK(TIM3_EventSource));
-  
+
   /* Set the event sources */
   TIM3->EGR = (uint8_t)TIM3_EventSource;
 }
@@ -570,7 +570,7 @@ void TIM3_OC1PolarityConfig(TIM3_OCPolarity_TypeDef TIM3_OCPolarity)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_OC_POLARITY_OK(TIM3_OCPolarity));
-  
+
   /* Set or Reset the CC1P Bit */
   if (TIM3_OCPolarity != TIM3_OCPOLARITY_HIGH)
   {
@@ -594,7 +594,7 @@ void TIM3_OC2PolarityConfig(TIM3_OCPolarity_TypeDef TIM3_OCPolarity)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_OC_POLARITY_OK(TIM3_OCPolarity));
-  
+
   /* Set or Reset the CC2P Bit */
   if (TIM3_OCPolarity != TIM3_OCPOLARITY_HIGH)
   {
@@ -621,7 +621,7 @@ void TIM3_CCxCmd(TIM3_Channel_TypeDef TIM3_Channel, FunctionalState NewState)
   /* Check the parameters */
   assert_param(IS_TIM3_CHANNEL_OK(TIM3_Channel));
   assert_param(IS_FUNCTIONALSTATE_OK(NewState));
-  
+
   if (TIM3_Channel == TIM3_CHANNEL_1)
   {
     /* Set or Reset the CC1E Bit */
@@ -633,7 +633,7 @@ void TIM3_CCxCmd(TIM3_Channel_TypeDef TIM3_Channel, FunctionalState NewState)
     {
       TIM3->CCER1 &= (uint8_t)(~TIM3_CCER1_CC1E);
     }
-    
+
   }
   else
   {
@@ -673,12 +673,12 @@ void TIM3_SelectOCxM(TIM3_Channel_TypeDef TIM3_Channel, TIM3_OCMode_TypeDef TIM3
   /* Check the parameters */
   assert_param(IS_TIM3_CHANNEL_OK(TIM3_Channel));
   assert_param(IS_TIM3_OCM_OK(TIM3_OCMode));
-  
+
   if (TIM3_Channel == TIM3_CHANNEL_1)
   {
     /* Disable the Channel 1: Reset the CCE Bit */
     TIM3->CCER1 &= (uint8_t)(~TIM3_CCER1_CC1E);
-    
+
     /* Reset the Output Compare Bits & Set the Output Compare Mode */
     TIM3->CCMR1 = (uint8_t)((uint8_t)(TIM3->CCMR1 & (uint8_t)(~TIM3_CCMR_OCM)) | (uint8_t)TIM3_OCMode);
   }
@@ -686,7 +686,7 @@ void TIM3_SelectOCxM(TIM3_Channel_TypeDef TIM3_Channel, TIM3_OCMode_TypeDef TIM3
   {
     /* Disable the Channel 2: Reset the CCE Bit */
     TIM3->CCER1 &= (uint8_t)(~TIM3_CCER1_CC2E);
-    
+
     /* Reset the Output Compare Bits & Set the Output Compare Mode */
     TIM3->CCMR2 = (uint8_t)((uint8_t)(TIM3->CCMR2 & (uint8_t)(~TIM3_CCMR_OCM)) | (uint8_t)TIM3_OCMode);
   }
@@ -758,7 +758,7 @@ void TIM3_SetIC1Prescaler(TIM3_ICPSC_TypeDef TIM3_IC1Prescaler)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_IC_PRESCALER_OK(TIM3_IC1Prescaler));
-  
+
   /* Reset the IC1PSC Bits & Set the IC1PSC value */
   TIM3->CCMR1 = (uint8_t)((uint8_t)(TIM3->CCMR1 & (uint8_t)(~TIM3_CCMR_ICxPSC)) | (uint8_t)TIM3_IC1Prescaler);
 }
@@ -777,7 +777,7 @@ void TIM3_SetIC2Prescaler(TIM3_ICPSC_TypeDef TIM3_IC2Prescaler)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_IC_PRESCALER_OK(TIM3_IC2Prescaler));
-  
+
   /* Reset the IC1PSC Bits & Set the IC1PSC value */
   TIM3->CCMR2 = (uint8_t)((uint8_t)(TIM3->CCMR2 & (uint8_t)(~TIM3_CCMR_ICxPSC)) | (uint8_t)TIM3_IC2Prescaler);
 }
@@ -792,10 +792,10 @@ uint16_t TIM3_GetCapture1(void)
   /* Get the Capture 1 Register value */
   uint16_t tmpccr1 = 0;
   uint8_t tmpccr1l=0, tmpccr1h=0;
-  
+
   tmpccr1h = TIM3->CCR1H;
   tmpccr1l = TIM3->CCR1L;
-  
+
   tmpccr1 = (uint16_t)(tmpccr1l);
   tmpccr1 |= (uint16_t)((uint16_t)tmpccr1h << 8);
   /* Get the Capture 1 Register value */
@@ -812,10 +812,10 @@ uint16_t TIM3_GetCapture2(void)
   /* Get the Capture 2 Register value */
   uint16_t tmpccr2 = 0;
   uint8_t tmpccr2l=0, tmpccr2h=0;
-  
+
   tmpccr2h = TIM3->CCR2H;
   tmpccr2l = TIM3->CCR2L;
-  
+
   tmpccr2 = (uint16_t)(tmpccr2l);
   tmpccr2 |= (uint16_t)((uint16_t)tmpccr2h << 8);
   /* Get the Capture 2 Register value */
@@ -830,7 +830,7 @@ uint16_t TIM3_GetCapture2(void)
 uint16_t TIM3_GetCounter(void)
 {
   uint16_t tmpcntr = 0;
-  
+
   tmpcntr = ((uint16_t)TIM3->CNTRH << 8);
   /* Get the Counter Register value */
   return (uint16_t)( tmpcntr| (uint16_t)(TIM3->CNTRL));
@@ -862,13 +862,13 @@ FlagStatus TIM3_GetFlagStatus(TIM3_FLAG_TypeDef TIM3_FLAG)
 {
   FlagStatus bitstatus = RESET;
   uint8_t tim3_flag_l = 0, tim3_flag_h = 0;
-  
+
   /* Check the parameters */
   assert_param(IS_TIM3_GET_FLAG_OK(TIM3_FLAG));
-  
+
   tim3_flag_l = (uint8_t)(TIM3->SR1 & (uint8_t)TIM3_FLAG);
   tim3_flag_h = (uint8_t)((uint16_t)TIM3_FLAG >> 8);
-  
+
   if (((tim3_flag_l) | (uint8_t)(TIM3->SR2 & tim3_flag_h)) != (uint8_t)RESET )
   {
     bitstatus = SET;
@@ -895,7 +895,7 @@ void TIM3_ClearFlag(TIM3_FLAG_TypeDef TIM3_FLAG)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_CLEAR_FLAG_OK(TIM3_FLAG));
-  
+
   /* Clear the flags (rc_w0) clear this bit by writing 0. Writing ‘1’ has no effect*/
   TIM3->SR1 = (uint8_t)(~((uint8_t)(TIM3_FLAG)));
   TIM3->SR2 = (uint8_t)(~((uint8_t)((uint16_t)TIM3_FLAG >> 8)));
@@ -914,14 +914,14 @@ ITStatus TIM3_GetITStatus(TIM3_IT_TypeDef TIM3_IT)
 {
   ITStatus bitstatus = RESET;
   uint8_t TIM3_itStatus = 0, TIM3_itEnable = 0;
-  
+
   /* Check the parameters */
   assert_param(IS_TIM3_GET_IT_OK(TIM3_IT));
-  
+
   TIM3_itStatus = (uint8_t)(TIM3->SR1 & TIM3_IT);
-  
+
   TIM3_itEnable = (uint8_t)(TIM3->IER & TIM3_IT);
-  
+
   if ((TIM3_itStatus != (uint8_t)RESET ) && (TIM3_itEnable != (uint8_t)RESET ))
   {
     bitstatus = SET;
@@ -946,7 +946,7 @@ void TIM3_ClearITPendingBit(TIM3_IT_TypeDef TIM3_IT)
 {
   /* Check the parameters */
   assert_param(IS_TIM3_IT_OK(TIM3_IT));
-  
+
   /* Clear the IT pending Bit */
   TIM3->SR1 = (uint8_t)(~TIM3_IT);
 }
@@ -973,10 +973,10 @@ static void TI1_Config(uint8_t TIM3_ICPolarity,
 {
   /* Disable the Channel 1: Reset the CCE Bit */
   TIM3->CCER1 &= (uint8_t)(~TIM3_CCER1_CC1E);
-  
+
   /* Select the Input and set the filter */
   TIM3->CCMR1 = (uint8_t)((uint8_t)(TIM3->CCMR1 & (uint8_t)(~( TIM3_CCMR_CCxS | TIM3_CCMR_ICxF))) | (uint8_t)(( (TIM3_ICSelection)) | ((uint8_t)( TIM3_ICFilter << 4))));
-  
+
   /* Select the Polarity */
   if (TIM3_ICPolarity != TIM3_ICPOLARITY_RISING)
   {
@@ -1012,12 +1012,12 @@ static void TI2_Config(uint8_t TIM3_ICPolarity,
 {
   /* Disable the Channel 2: Reset the CCE Bit */
   TIM3->CCER1 &=  (uint8_t)(~TIM3_CCER1_CC2E);
-  
+
   /* Select the Input and set the filter */
   TIM3->CCMR2 = (uint8_t)((uint8_t)(TIM3->CCMR2 & (uint8_t)(~( TIM3_CCMR_CCxS |
-                                                              TIM3_CCMR_ICxF    ))) | (uint8_t)(( (TIM3_ICSelection)) | 
+                                                              TIM3_CCMR_ICxF    ))) | (uint8_t)(( (TIM3_ICSelection)) |
                                                                                                 ((uint8_t)( TIM3_ICFilter << 4))));
-  
+
   /* Select the Polarity */
   if (TIM3_ICPolarity != TIM3_ICPOLARITY_RISING)
   {
@@ -1027,7 +1027,7 @@ static void TI2_Config(uint8_t TIM3_ICPolarity,
   {
     TIM3->CCER1 &= (uint8_t)(~TIM3_CCER1_CC2P);
   }
-  
+
   /* Set the CCE Bit */
   TIM3->CCER1 |= TIM3_CCER1_CC2E;
 }
@@ -1035,10 +1035,10 @@ static void TI2_Config(uint8_t TIM3_ICPolarity,
 /**
   * @}
   */
-  
+
   /**
   * @}
   */
-  
+
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

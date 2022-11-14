@@ -16,8 +16,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.
@@ -68,14 +68,14 @@ void BEEP_Init(BEEP_Frequency_TypeDef BEEP_Frequency)
 {
   /* Check parameter */
   assert_param(IS_BEEP_FREQUENCY_OK(BEEP_Frequency));
-  
+
   /* Set a default calibration value if no calibration is done */
   if ((BEEP->CSR & BEEP_CSR_BEEPDIV) == BEEP_CSR_BEEPDIV)
   {
     BEEP->CSR &= (uint8_t)(~BEEP_CSR_BEEPDIV); /* Clear bits */
     BEEP->CSR |= BEEP_CALIBRATION_DEFAULT;
   }
-  
+
   /* Select the output frequency */
   BEEP->CSR &= (uint8_t)(~BEEP_CSR_BEEPSEL);
   BEEP->CSR |= (uint8_t)(BEEP_Frequency);
@@ -119,18 +119,18 @@ void BEEP_LSICalibrationConfig(uint32_t LSIFreqHz)
 {
   uint16_t lsifreqkhz;
   uint16_t A;
-  
+
   /* Check parameter */
   assert_param(IS_LSI_FREQUENCY_OK(LSIFreqHz));
-  
+
   lsifreqkhz = (uint16_t)(LSIFreqHz / 1000); /* Converts value in kHz */
-  
+
   /* Calculation of BEEPER calibration value */
-  
+
   BEEP->CSR &= (uint8_t)(~BEEP_CSR_BEEPDIV); /* Clear bits */
-  
+
   A = (uint16_t)(lsifreqkhz >> 3U); /* Division by 8, keep integer part only */
-  
+
   if ((8U * A) >= ((lsifreqkhz - (8U * A)) * (1U + (2U * A))))
   {
     BEEP->CSR |= (uint8_t)(A - 2U);
@@ -144,10 +144,10 @@ void BEEP_LSICalibrationConfig(uint32_t LSIFreqHz)
 /**
   * @}
   */
-  
+
 /**
   * @}
   */
-  
+
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

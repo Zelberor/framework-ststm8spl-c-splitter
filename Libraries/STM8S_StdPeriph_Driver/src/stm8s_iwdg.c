@@ -16,8 +16,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.
@@ -49,7 +49,7 @@ void IWDG_WriteAccessCmd(IWDG_WriteAccess_TypeDef IWDG_WriteAccess)
 {
   /* Check the parameters */
   assert_param(IS_IWDG_WRITEACCESS_MODE_OK(IWDG_WriteAccess));
-  
+
   IWDG->KR = (uint8_t)IWDG_WriteAccess; /* Write Access */
 }
 
@@ -64,7 +64,7 @@ void IWDG_SetPrescaler(IWDG_Prescaler_TypeDef IWDG_Prescaler)
 {
   /* Check the parameters */
   assert_param(IS_IWDG_PRESCALER_OK(IWDG_Prescaler));
-  
+
   IWDG->PR = (uint8_t)IWDG_Prescaler;
 }
 

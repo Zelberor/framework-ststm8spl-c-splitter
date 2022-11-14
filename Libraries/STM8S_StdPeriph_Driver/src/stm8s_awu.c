@@ -4,7 +4,7 @@
   * @author  MCD Application Team
   * @version V2.3.0
   * @date    16-June-2017
-  * @brief   This file contains all the functions for the AWU peripheral.  
+  * @brief   This file contains all the functions for the AWU peripheral.
    ******************************************************************************
   * @attention
   *
@@ -16,8 +16,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.
@@ -89,14 +89,14 @@ void AWU_Init(AWU_Timebase_TypeDef AWU_TimeBase)
 {
   /* Check parameter */
   assert_param(IS_AWU_TIMEBASE_OK(AWU_TimeBase));
-  
+
   /* Enable the AWU peripheral */
   AWU->CSR |= AWU_CSR_AWUEN;
-  
+
   /* Set the TimeBase */
   AWU->TBR &= (uint8_t)(~AWU_TBR_AWUTB);
   AWU->TBR |= TBR_Array[(uint8_t)AWU_TimeBase];
-  
+
   /* Set the APR divider */
   AWU->APR &= (uint8_t)(~AWU_APR_APR);
   AWU->APR |= APR_Array[(uint8_t)AWU_TimeBase];
@@ -140,16 +140,16 @@ void AWU_LSICalibrationConfig(uint32_t LSIFreqHz)
 {
   uint16_t lsifreqkhz = 0x0;
   uint16_t A = 0x0;
-  
+
   /* Check parameter */
   assert_param(IS_LSI_FREQUENCY_OK(LSIFreqHz));
-  
+
   lsifreqkhz = (uint16_t)(LSIFreqHz / 1000); /* Converts value in kHz */
-  
+
   /* Calculation of AWU calibration value */
-  
+
   A = (uint16_t)(lsifreqkhz >> 2U); /* Division by 4, keep integer part only */
-  
+
   if ((4U * A) >= ((lsifreqkhz - (4U * A)) * (1U + (2U * A))))
   {
     AWU->APR = (uint8_t)(A - 2U);
@@ -169,7 +169,7 @@ void AWU_IdleModeEnable(void)
 {
   /* Disable AWU peripheral */
   AWU->CSR &= (uint8_t)(~AWU_CSR_AWUEN);
-  
+
   /* No AWU timebase */
   AWU->TBR = (uint8_t)(~AWU_TBR_AWUTB);
 }
@@ -189,10 +189,10 @@ FlagStatus AWU_GetFlagStatus(void)
 /**
   * @}
   */
-  
+
 /**
   * @}
   */
-  
+
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

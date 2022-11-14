@@ -16,8 +16,8 @@
   *
   *        http://www.st.com/software_license_agreement_liberty_v2
   *
-  * Unless required by applicable law or agreed to in writing, software 
-  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * Unless required by applicable law or agreed to in writing, software
+  * distributed under the License is distributed on an "AS IS" BASIS,
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
   * limitations under the License.
@@ -93,8 +93,8 @@ void I2C_DeInit(void)
   * @param  InputClockFrequencyMHz : Specifies the input clock frequency in MHz.
   * @retval None
   */
-void I2C_Init(uint32_t OutputClockFrequencyHz, uint16_t OwnAddress, 
-              I2C_DutyCycle_TypeDef I2C_DutyCycle, I2C_Ack_TypeDef Ack, 
+void I2C_Init(uint32_t OutputClockFrequencyHz, uint16_t OwnAddress,
+              I2C_DutyCycle_TypeDef I2C_DutyCycle, I2C_Ack_TypeDef Ack,
               I2C_AddMode_TypeDef AddMode, uint8_t InputClockFrequencyMHz )
 {
   uint16_t result = 0x0004;
@@ -105,7 +105,7 @@ void I2C_Init(uint32_t OutputClockFrequencyHz, uint16_t OwnAddress,
   assert_param(IS_I2C_ACK_OK(Ack));
   assert_param(IS_I2C_ADDMODE_OK(AddMode));
   assert_param(IS_I2C_OWN_ADDRESS_OK(OwnAddress));
-  assert_param(IS_I2C_DUTYCYCLE_OK(I2C_DutyCycle));  
+  assert_param(IS_I2C_DUTYCYCLE_OK(I2C_DutyCycle));
   assert_param(IS_I2C_INPUT_CLOCK_FREQ_OK(InputClockFrequencyMHz));
   assert_param(IS_I2C_OUTPUT_CLOCK_FREQ_OK(OutputClockFrequencyHz));
 
@@ -661,7 +661,7 @@ I2C_Event_TypeDef I2C_GetLastEvent(void)
   *     @arg I2C_FLAG_TRANSMITTERRECEIVER: Transmitter/Receiver flag
   *     @arg I2C_FLAG_BUSBUSY: Bus busy flag
   *     @arg I2C_FLAG_MASTERSLAVE: Master/Slave flag
-  *     @arg I2C_FLAG_WAKEUPFROMHALT: Wake up from HALT flag  
+  *     @arg I2C_FLAG_WAKEUPFROMHALT: Wake up from HALT flag
   *     @arg I2C_FLAG_OVERRUNUNDERRUN: Overrun/Underrun flag (Slave mode)
   *     @arg I2C_FLAG_ACKNOWLEDGEFAILURE: Acknowledge failure flag
   *     @arg I2C_FLAG_ARBITRATIONLOSS: Arbitration lost flag (Master mode)
