@@ -45,6 +45,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the external interrupt control registers to their default reset value.
   * @param  None
@@ -55,6 +57,8 @@ void EXTI_DeInit(void)
   EXTI->CR1 = EXTI_CR1_RESET_VALUE;
   EXTI->CR2 = EXTI_CR2_RESET_VALUE;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Set the external interrupt sensitivity of the selected port.
@@ -101,6 +105,8 @@ void EXTI_SetExtIntSensitivity(EXTI_Port_TypeDef Port, EXTI_Sensitivity_TypeDef 
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Set the TLI interrupt sensitivity.
   * @param   SensitivityValue The TLI interrupt sensitivity value.
@@ -117,6 +123,8 @@ void EXTI_SetTLISensitivity(EXTI_TLISensitivity_TypeDef SensitivityValue)
   EXTI->CR2 &= (uint8_t)(~EXTI_CR2_TLIS);
   EXTI->CR2 |= (uint8_t)(SensitivityValue);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Get the external interrupt sensitivity of the selected port.
@@ -153,6 +161,8 @@ EXTI_Sensitivity_TypeDef EXTI_GetExtIntSensitivity(EXTI_Port_TypeDef Port)
 
   return((EXTI_Sensitivity_TypeDef)value);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Get the TLI interrupt sensitivity.

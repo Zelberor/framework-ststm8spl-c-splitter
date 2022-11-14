@@ -84,8 +84,8 @@
 
 /* SDCC patch: for >64kB to pass data to/from inline ASM (SDCC doesn't support far pointers yet) */
 #if defined(_SDCC_BIGMEM_)
-  uint32_t    asm_addr;      // 16b/24b address
-  uint8_t     asm_val;       // 1B data for r/w data
+  extern uint32_t    asm_addr;      // 16b/24b address
+  extern uint8_t     asm_val;       // 1B data for r/w data
 #endif // _SDCC_BIGMEM_
 
 /* Private function prototypes -----------------------------------------------*/
@@ -96,7 +96,17 @@
   uint8_t   read_byte_address(uint32_t Address);                  // read single byte from 16b/24b address
 #endif // _SDCC_BIGMEM_
 
+// <--#SPLIT#--> //
+
+/* SDCC patch: for >64kB to pass data to/from inline ASM (SDCC doesn't support far pointers yet) */
+#if defined(_SDCC_BIGMEM_)
+  uint32_t    asm_addr;      // 16b/24b address
+  uint8_t     asm_val;       // 1B data for r/w data
+#endif // _SDCC_BIGMEM_
+
 /* Private Constants ---------------------------------------------------------*/
+
+// <--#SPLIT#--> //
 
 /* SDCC patch: r/w helper routines for >64kB addresses using inline ASM (SDCC doesn't support far pointers yet) */
 /** @addtogroup FLASH_Helper_functions
@@ -125,6 +135,11 @@ __endasm;
 
 }
 
+#endif // _SDCC_BIGMEM_
+
+// <--#SPLIT#--> //
+
+#if defined (_SDCC_BIGMEM_)
 
 /**
   * @brief  Reads any byte from flash memory
@@ -159,6 +174,8 @@ __endasm;
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Unlocks the program or data EEPROM memory
   * @param  FLASH_MemType : Memory type to unlock
@@ -184,6 +201,8 @@ void FLASH_Unlock(FLASH_MemType_TypeDef FLASH_MemType)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Locks the program or data EEPROM memory
   * @param  FLASH_MemType : Memory type
@@ -199,6 +218,8 @@ void FLASH_Lock(FLASH_MemType_TypeDef FLASH_MemType)
   FLASH->IAPSR &= (uint8_t)FLASH_MemType;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  DeInitializes the FLASH registers to their default reset values.
   * @param  None
@@ -213,6 +234,8 @@ void FLASH_DeInit(void)
   FLASH->IAPSR &= (uint8_t)(~FLASH_IAPSR_PUL);
   (void) FLASH->IAPSR; /* Reading of this register causes the clearing of status flags */
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or Disables the Flash interrupt mode
@@ -235,6 +258,8 @@ void FLASH_ITConfig(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Erases one byte in the program or data EEPROM memory
   * @note   PointerAttr define is declared in the stm8s.h file to select if
@@ -255,6 +280,8 @@ void FLASH_EraseByte(uint32_t Address)
     write_byte_address((MemoryAddressCast) Address, FLASH_CLEAR_BYTE);
   #endif // _SDCC_BIGMEM_
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Programs one byte in program or data EEPROM memory
@@ -278,6 +305,8 @@ void FLASH_ProgramByte(uint32_t Address, uint8_t Data)
   #endif // _SDCC_BIGMEM_
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Reads any byte from flash memory
   * @note   PointerAttr define is declared in the stm8s.h file to select if
@@ -298,6 +327,8 @@ uint8_t FLASH_ReadByte(uint32_t Address)
     return(read_byte_address((MemoryAddressCast) Address));
   #endif // _SDCC_BIGMEM_
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Programs one word (4 bytes) in program or data EEPROM memory
@@ -334,6 +365,8 @@ void FLASH_ProgramWord(uint32_t Address, uint32_t Data)
   #endif // _SDCC_BIGMEM_
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Programs option byte
   * @param  Address : option byte address to program
@@ -368,6 +401,8 @@ void FLASH_ProgramOptionByte(uint16_t Address, uint8_t Data)
   FLASH->NCR2 |= FLASH_NCR2_NOPT;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Erases option byte
   * @param  Address : Option byte address to erase
@@ -400,6 +435,8 @@ void FLASH_EraseOptionByte(uint16_t Address)
   FLASH->CR2 &= (uint8_t)(~FLASH_CR2_OPT);
   FLASH->NCR2 |= FLASH_NCR2_NOPT;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Reads one option byte
@@ -437,6 +474,8 @@ uint16_t FLASH_ReadOptionByte(uint16_t Address)
   return(res_value);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Select the Flash behaviour in low power mode
   * @param  FLASH_LPMode Low power mode selection
@@ -455,6 +494,8 @@ void FLASH_SetLowPowerMode(FLASH_LPMode_TypeDef FLASH_LPMode)
   FLASH->CR1 |= (uint8_t)FLASH_LPMode;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the fixed programming time
   * @param  FLASH_ProgTime Indicates the programming time to be fixed
@@ -470,6 +511,8 @@ void FLASH_SetProgrammingTime(FLASH_ProgramTime_TypeDef FLASH_ProgTime)
   FLASH->CR1 |= (uint8_t)FLASH_ProgTime;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Returns the Flash behaviour type in low power mode
   * @param  None
@@ -480,6 +523,8 @@ FLASH_LPMode_TypeDef FLASH_GetLowPowerMode(void)
   return((FLASH_LPMode_TypeDef)(FLASH->CR1 & (uint8_t)(FLASH_CR1_HALT | FLASH_CR1_AHALT)));
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Returns the fixed programming time
   * @param  None
@@ -489,6 +534,8 @@ FLASH_ProgramTime_TypeDef FLASH_GetProgrammingTime(void)
 {
   return((FLASH_ProgramTime_TypeDef)(FLASH->CR1 & FLASH_CR1_FIX));
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Returns the Boot memory size in bytes
@@ -511,6 +558,8 @@ uint32_t FLASH_GetBootSize(void)
   /* Return value */
   return(temp);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified SPI flag is set or not.
@@ -539,6 +588,8 @@ FlagStatus FLASH_GetFlagStatus(FLASH_Flag_TypeDef FLASH_FLAG)
   /* Return the FLASH_FLAG status */
   return status;
 }
+
+// <--#SPLIT#--> //
 
 /**
 @code

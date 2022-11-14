@@ -42,6 +42,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the SPI peripheral registers to their default reset values.
   * @param  None
@@ -55,6 +57,8 @@ void SPI_DeInit(void)
   SPI->SR     = SPI_SR_RESET_VALUE;
   SPI->CRCPR  = SPI_CRCPR_RESET_VALUE;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the SPI according to the specified parameters.
@@ -110,6 +114,8 @@ void SPI_Init(SPI_FirstBit_TypeDef FirstBit, SPI_BaudRatePrescaler_TypeDef BaudR
   SPI->CRCPR = (uint8_t)CRCPolynomial;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the SPI peripheral.
   * @param  NewState New state of the SPI peripheral.
@@ -130,6 +136,8 @@ void SPI_Cmd(FunctionalState NewState)
     SPI->CR1 &= (uint8_t)(~SPI_CR1_SPE); /* Disable the SPI peripheral*/
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the specified interrupts.
@@ -158,6 +166,8 @@ void SPI_ITConfig(SPI_IT_TypeDef SPI_IT, FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Transmits a Data through the SPI peripheral.
   * @param  Data : Byte to be transmitted.
@@ -168,6 +178,8 @@ void SPI_SendData(uint8_t Data)
   SPI->DR = Data; /* Write in the DR register the data to be sent*/
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Returns the most recent received data by the SPI peripheral.
   * @param  None
@@ -177,6 +189,8 @@ uint8_t SPI_ReceiveData(void)
 {
   return ((uint8_t)SPI->DR); /* Return the data in the DR register*/
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures internally by software the NSS pin.
@@ -199,6 +213,8 @@ void SPI_NSSInternalSoftwareCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables the transmit of the CRC value.
   * @param  None
@@ -208,6 +224,8 @@ void SPI_TransmitCRC(void)
 {
   SPI->CR2 |= SPI_CR2_CRCNEXT; /* Enable the CRC transmission*/
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the CRC value calculation of the transferred bytes.
@@ -229,6 +247,8 @@ void SPI_CalculateCRCCmd(FunctionalState NewState)
     SPI->CR2 &= (uint8_t)(~SPI_CR2_CRCEN); /* Disable the CRC calculation*/
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Returns the transmit or the receive CRC register value.
@@ -255,6 +275,8 @@ uint8_t SPI_GetCRC(SPI_CRC_TypeDef SPI_CRC)
   return crcreg;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Reset the Rx CRCR and Tx CRCR registers.
   * @param  None
@@ -270,6 +292,8 @@ void SPI_ResetCRC(void)
   SPI_Cmd(ENABLE);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Returns the CRC Polynomial register value.
   * @param  None
@@ -279,6 +303,8 @@ uint8_t SPI_GetCRCPolynomial(void)
 {
   return SPI->CRCPR; /* Return the CRC polynomial register */
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Selects the data transfer direction in bi-directional mode.
@@ -300,6 +326,8 @@ void SPI_BiDirectionalLineConfig(SPI_Direction_TypeDef SPI_Direction)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Checks whether the specified SPI flag is set or not.
   * @param  SPI_FLAG : Specifies the flag to check.
@@ -307,7 +335,6 @@ void SPI_BiDirectionalLineConfig(SPI_Direction_TypeDef SPI_Direction)
   * @retval FlagStatus : Indicates the state of SPI_FLAG.
   *         This parameter can be any of the @ref FlagStatus enumeration.
   */
-
 FlagStatus SPI_GetFlagStatus(SPI_Flag_TypeDef SPI_FLAG)
 {
   FlagStatus status = RESET;
@@ -327,6 +354,8 @@ FlagStatus SPI_GetFlagStatus(SPI_Flag_TypeDef SPI_FLAG)
   /* Return the SPI_FLAG status */
   return status;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clears the SPI flags.
@@ -349,6 +378,8 @@ void SPI_ClearFlag(SPI_Flag_TypeDef SPI_FLAG)
   /* Clear the flag bit */
   SPI->SR = (uint8_t)(~SPI_FLAG);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified interrupt has occurred or not.
@@ -394,6 +425,8 @@ ITStatus SPI_GetITStatus(SPI_IT_TypeDef SPI_IT)
   /* Return the SPI_ITPENDINGBIT status */
   return  pendingbitstatus;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clears the interrupt pending bits.

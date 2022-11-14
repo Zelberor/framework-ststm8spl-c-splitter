@@ -45,12 +45,13 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the UART peripheral.
   * @param  None
   * @retval None
   */
-
 void UART3_DeInit(void)
 {
   /* Clear the Idle Line Detected bit in the status rerister by a read
@@ -67,6 +68,8 @@ void UART3_DeInit(void)
   UART3->CR4 = UART3_CR4_RESET_VALUE;  /*Set UART3_CR4 to reset value 0x00  */
   UART3->CR6 = UART3_CR6_RESET_VALUE;  /*Set UART3_CR6 to reset value 0x00  */
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the UART3 according to the specified parameters.
@@ -151,6 +154,8 @@ void UART3_Init(uint32_t BaudRate, UART3_WordLength_TypeDef WordLength,
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enable the UART1 peripheral.
   * @param  NewState : The new state of the UART Communication.
@@ -170,6 +175,8 @@ void UART3_Cmd(FunctionalState NewState)
     UART3->CR1 |= UART3_CR1_UARTD;
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the specified UART3 interrupts.
@@ -242,6 +249,8 @@ void UART3_ITConfig(UART3_IT_TypeDef UART3_IT, FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the UART3 LIN Break detection length.
   * @param  UART3_LINBreakDetectionLength specifies the LIN break detection length.
@@ -263,6 +272,8 @@ void UART3_LINBreakDetectionConfig(UART3_LINBreakDetectionLength_TypeDef UART3_L
     UART3->CR4 &= ((uint8_t)~UART3_CR4_LBDL);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configure the UART3 peripheral.
@@ -311,6 +322,8 @@ void UART3_LINConfig(UART3_LinMode_TypeDef UART3_Mode,
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the UART3 LIN mode.
   * @param  NewState is new state of the UART3 LIN mode.
@@ -334,6 +347,8 @@ void UART3_LINCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Selects the UART3 WakeUp method.
   * @param  UART3_WakeUp: specifies the UART3 wakeup method.
@@ -348,6 +363,8 @@ void UART3_WakeUpConfig(UART3_WakeUp_TypeDef UART3_WakeUp)
   UART3->CR1 &= ((uint8_t)~UART3_CR1_WAKE);
   UART3->CR1 |= (uint8_t)UART3_WakeUp;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Determines if the UART3 is in mute mode or not.
@@ -372,6 +389,8 @@ void UART3_ReceiverWakeUpCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Returns the most recent received data by the UART3 peripheral.
   * @param  None
@@ -381,6 +400,8 @@ uint8_t UART3_ReceiveData8(void)
 {
   return ((uint8_t)UART3->DR);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Returns the most recent received data by the UART3 peripheral.
@@ -395,6 +416,8 @@ uint16_t UART3_ReceiveData9(void)
   return (uint16_t)((((uint16_t)UART3->DR) | temp) & ((uint16_t)0x01FF));
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Transmits 8 bit data through the UART3 peripheral.
   * @param  Data the data to transmit.
@@ -405,6 +428,8 @@ void UART3_SendData8(uint8_t Data)
   /* Transmit Data */
   UART3->DR = Data;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Transmits 9 bit data through the UART3 peripheral.
@@ -423,6 +448,8 @@ void UART3_SendData9(uint16_t Data)
   UART3->DR   = (uint8_t)(Data);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Transmits break characters.
   * @param  None
@@ -432,6 +459,8 @@ void UART3_SendBreak(void)
 {
   UART3->CR2 |= UART3_CR2_SBK;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the address of the UART3 node.
@@ -448,6 +477,8 @@ void UART3_SetAddress(uint8_t UART3_Address)
   /* Set the UART3 address node */
   UART3->CR4 |= UART3_Address;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified UART3 flag is set or not.
@@ -520,6 +551,8 @@ FlagStatus UART3_GetFlagStatus(UART3_Flag_TypeDef UART3_FLAG)
   return  status;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Clears the UART3 flags.
   * @param  UART3_FLAG specifies the flag to clear
@@ -574,6 +607,8 @@ void UART3_ClearFlag(UART3_Flag_TypeDef UART3_FLAG)
     UART3->CR6 &= (uint8_t)(~UART3_CR6_LSF);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified UART3 interrupt has occurred or not.
@@ -675,6 +710,8 @@ ITStatus UART3_GetITStatus(UART3_IT_TypeDef UART3_IT)
   /* Return the UART3_IT status*/
   return  pendingbitstatus;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clears the UART3 pending flags.

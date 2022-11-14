@@ -59,6 +59,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the I2C peripheral registers to their default reset values.
   * @param  None
@@ -76,6 +78,8 @@ void I2C_DeInit(void)
   I2C->CCRH = I2C_CCRH_RESET_VALUE;
   I2C->TRISER = I2C_TRISER_RESET_VALUE;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the I2C according to the specified parameters in standard
@@ -193,6 +197,8 @@ void I2C_Init(uint32_t OutputClockFrequencyHz, uint16_t OwnAddress,
                    (uint8_t)((OwnAddress & (uint16_t)0x0300) >> (uint8_t)7));
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the I2C peripheral.
   * @param  NewState : Indicate the new I2C peripheral state.
@@ -216,6 +222,8 @@ void I2C_Cmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the I2C General Call feature.
   * @param  NewState : State of the General Call feature.
@@ -238,6 +246,8 @@ void I2C_GeneralCallCmd(FunctionalState NewState)
     I2C->CR1 &= (uint8_t)(~I2C_CR1_ENGC);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Generates I2C communication START condition.
@@ -264,6 +274,8 @@ void I2C_GenerateSTART(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Generates I2C communication STOP condition.
   * @param   NewState : Enable or disable the stop condition.
@@ -286,6 +298,8 @@ void I2C_GenerateSTOP(FunctionalState NewState)
     I2C->CR2 &= (uint8_t)(~I2C_CR2_STOP);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables I2C software reset.
@@ -310,13 +324,14 @@ void I2C_SoftwareResetCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the I2C clock stretching.
   * @param  NewState : Specifies the new state of the I2C Clock stretching.
   *         This parameter can be any of the @ref FunctionalState enumeration.
   * @retval None
   */
-
 void I2C_StretchClockCmd(FunctionalState NewState)
 {
   /* Check function parameters */
@@ -334,6 +349,8 @@ void I2C_StretchClockCmd(FunctionalState NewState)
     I2C->CR1 |= I2C_CR1_NOSTRETCH;
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enable or Disable the I2C acknowledge and position acknowledge feature.
@@ -370,6 +387,8 @@ void I2C_AcknowledgeConfig(I2C_Ack_TypeDef Ack)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the specified I2C interrupt.
   * @param  I2C_IT : Name of the interrupt to enable or disable.
@@ -396,6 +415,8 @@ void I2C_ITConfig(I2C_IT_TypeDef I2C_IT, FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Selects the specified I2C fast mode duty cycle.
   * @param  I2C_DutyCycle : Specifies the duty cycle to apply.
@@ -419,6 +440,8 @@ void I2C_FastModeDutyCycleConfig(I2C_DutyCycle_TypeDef I2C_DutyCycle)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Returns the most recent received data.
   * @param  None
@@ -429,6 +452,8 @@ uint8_t I2C_ReceiveData(void)
   /* Return the data present in the DR register */
   return ((uint8_t)I2C->DR);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Transmits the 7-bit address (to select the) slave device.
@@ -449,6 +474,8 @@ void I2C_Send7bitAddress(uint8_t Address, I2C_Direction_TypeDef Direction)
   /* Send the Address + Direction */
   I2C->DR = (uint8_t)(Address | (uint8_t)Direction);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Send a byte by writing in the DR register.
@@ -546,6 +573,8 @@ void I2C_SendData(uint8_t Data)
  *******************************************************************************
  */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Checks whether the last I2C Event is equal to the one passed
   *   as parameter.
@@ -611,6 +640,8 @@ ErrorStatus I2C_CheckEvent(I2C_Event_TypeDef I2C_Event)
   return status;
 }
 
+// <--#SPLIT#--> //
+
 /**
  *
  *  2) Advanced state monitoring
@@ -647,6 +678,8 @@ I2C_Event_TypeDef I2C_GetLastEvent(void)
   /* Return status */
   return (I2C_Event_TypeDef)lastevent;
 }
+
+// <--#SPLIT#--> //
 
 /**
  *
@@ -724,6 +757,8 @@ FlagStatus I2C_GetFlagStatus(I2C_Flag_TypeDef I2C_Flag)
   return bitstatus;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Clear flags
   * @param  I2C_FLAG : Specifies the flag to clear
@@ -767,6 +802,8 @@ void I2C_ClearFlag(I2C_Flag_TypeDef I2C_FLAG)
   /* Clear the selected I2C flag */
   I2C->SR2 = (uint8_t)((uint16_t)(~flagpos));
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified I2C interrupt has occurred or not.
@@ -833,6 +870,8 @@ ITStatus I2C_GetITStatus(I2C_ITPendingBit_TypeDef I2C_ITPendingBit)
   /* Return the I2C_IT status */
   return  bitstatus;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clear IT pending bit

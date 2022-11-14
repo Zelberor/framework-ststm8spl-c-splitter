@@ -44,12 +44,13 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the UART peripheral.
   * @param  None
   * @retval None
   */
-
 void UART2_DeInit(void)
 {
   /*  Clear the Idle Line Detected bit in the status register by a read
@@ -67,6 +68,8 @@ void UART2_DeInit(void)
   UART2->CR5 = UART2_CR5_RESET_VALUE; /*  Set UART2_CR5 to reset value 0x00  */
   UART2->CR6 = UART2_CR6_RESET_VALUE; /*  Set UART2_CR6 to reset value 0x00  */
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the UART2 according to the specified parameters.
@@ -172,6 +175,8 @@ void UART2_Init(uint32_t BaudRate, UART2_WordLength_TypeDef WordLength, UART2_St
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enable the UART2 peripheral.
   * @param  NewState : The new state of the UART Communication.
@@ -191,6 +196,8 @@ void UART2_Cmd(FunctionalState NewState)
     UART2->CR1 |= UART2_CR1_UARTD;
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the specified UART2 interrupts.
@@ -263,6 +270,8 @@ void UART2_ITConfig(UART2_IT_TypeDef UART2_IT, FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the UART2’s IrDA interface.
   * @param  UART2_IrDAMode specifies the IrDA mode.
@@ -282,6 +291,8 @@ void UART2_IrDAConfig(UART2_IrDAMode_TypeDef UART2_IrDAMode)
     UART2->CR5 &= ((uint8_t)~UART2_CR5_IRLP);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the UART2’s IrDA interface.
@@ -306,6 +317,8 @@ void UART2_IrDACmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the UART2 LIN Break detection length.
   * @param  UART2_LINBreakDetectionLength specifies the LIN break detection length.
@@ -327,6 +340,8 @@ void UART2_LINBreakDetectionConfig(UART2_LINBreakDetectionLength_TypeDef UART2_L
     UART2->CR4 &= ((uint8_t)~UART2_CR4_LBDL);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configure the UART2 peripheral.
@@ -375,6 +390,8 @@ void UART2_LINConfig(UART2_LinMode_TypeDef UART2_Mode,
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the UART2 LIN mode.
   * @param  NewState is new state of the UART2 LIN mode.
@@ -396,6 +413,8 @@ void UART2_LINCmd(FunctionalState NewState)
     UART2->CR3 &= ((uint8_t)~UART2_CR3_LINEN);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the UART2 Smart Card mode.
@@ -420,6 +439,8 @@ void UART2_SmartCardCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables NACK transmission.
   * @param  NewState: new state of the Smart Card mode.
@@ -443,6 +464,8 @@ void UART2_SmartCardNACKCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Selects the UART2 WakeUp method.
   * @param  UART2_WakeUp: specifies the UART2 wakeup method.
@@ -456,6 +479,8 @@ void UART2_WakeUpConfig(UART2_WakeUp_TypeDef UART2_WakeUp)
   UART2->CR1 &= ((uint8_t)~UART2_CR1_WAKE);
   UART2->CR1 |= (uint8_t)UART2_WakeUp;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Determines if the UART2 is in mute mode or not.
@@ -479,6 +504,8 @@ void UART2_ReceiverWakeUpCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Returns the most recent received data by the UART2 peripheral.
   * @param  None
@@ -488,6 +515,8 @@ uint8_t UART2_ReceiveData8(void)
 {
   return ((uint8_t)UART2->DR);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Returns the most recent received data by the UART2 peripheral.
@@ -503,6 +532,8 @@ uint16_t UART2_ReceiveData9(void)
   return (uint16_t)((((uint16_t)UART2->DR) | temp) & ((uint16_t)0x01FF));
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Transmits 8 bit data through the UART2 peripheral.
   * @param  Data: the data to transmit.
@@ -513,6 +544,8 @@ void UART2_SendData8(uint8_t Data)
   /* Transmit Data */
   UART2->DR = Data;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Transmits 9 bit data through the UART2 peripheral.
@@ -531,6 +564,8 @@ void UART2_SendData9(uint16_t Data)
   UART2->DR   = (uint8_t)(Data);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Transmits break characters.
   * @param  None
@@ -540,6 +575,8 @@ void UART2_SendBreak(void)
 {
   UART2->CR2 |= UART2_CR2_SBK;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the address of the UART2 node.
@@ -557,6 +594,8 @@ void UART2_SetAddress(uint8_t UART2_Address)
   UART2->CR4 |= UART2_Address;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the specified UART2 guard time.
   * @note   SmartCard Mode should be Enabled
@@ -568,6 +607,8 @@ void UART2_SetGuardTime(uint8_t UART2_GuardTime)
   /* Set the UART2 guard time */
   UART2->GTR = UART2_GuardTime;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the system clock prescaler.
@@ -596,6 +637,8 @@ void UART2_SetPrescaler(uint8_t UART2_Prescaler)
   /* Load the UART2 prescaler value*/
   UART2->PSCR = UART2_Prescaler;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified UART2 flag is set or not.
@@ -668,6 +711,8 @@ FlagStatus UART2_GetFlagStatus(UART2_Flag_TypeDef UART2_FLAG)
   return  status;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Clears the UART2 flags.
   * @param  UART2_FLAG specifies the flag to clear
@@ -721,6 +766,8 @@ void UART2_ClearFlag(UART2_Flag_TypeDef UART2_FLAG)
     UART2->CR6 &= (uint8_t)(~UART2_CR6_LSF);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified UART2 interrupt has occurred or not.
@@ -822,6 +869,8 @@ ITStatus UART2_GetITStatus(UART2_IT_TypeDef UART2_IT)
   /* Return the UART2_IT status*/
   return  pendingbitstatus;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clears the UART2 pending flags.

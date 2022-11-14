@@ -42,6 +42,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Utility function used to read CC register.
   * @param  None
@@ -75,6 +77,8 @@ uint8_t ITC_GetCPUCC(void)
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the ITC registers to their default reset value.
   * @param  None
@@ -92,6 +96,8 @@ void ITC_DeInit(void)
   ITC->ISPR8 = ITC_SPRX_RESET_VALUE;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the interrupt software priority bits (I1, I0) value from CPU CC register.
   * @param  None
@@ -101,6 +107,8 @@ uint8_t ITC_GetSoftIntStatus(void)
 {
   return (uint8_t)(ITC_GetCPUCC() & CPU_CC_I1I0);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Gets the software priority of the specified interrupt source.
@@ -206,6 +214,8 @@ ITC_PriorityLevel_TypeDef ITC_GetSoftwarePriority(ITC_Irq_TypeDef IrqNum)
 
   return((ITC_PriorityLevel_TypeDef)Value);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the software priority of the specified interrupt source.

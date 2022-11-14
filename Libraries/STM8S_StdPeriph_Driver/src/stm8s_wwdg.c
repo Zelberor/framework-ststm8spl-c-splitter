@@ -42,6 +42,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Initializes the WWDG peripheral.
   *         This function set Window Register = WindowValue, Counter Register
@@ -60,6 +62,8 @@ void WWDG_Init(uint8_t Counter, uint8_t WindowValue)
   WWDG->WR = (uint8_t)((uint8_t)(~WWDG_CR_WDGA) & (uint8_t)(WWDG_CR_T6 | WindowValue));
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Refreshes the WWDG peripheral.
   * @param  Counter :  WWDG Counter Value
@@ -76,6 +80,8 @@ void WWDG_SetCounter(uint8_t Counter)
   WWDG->CR = (uint8_t)(Counter & (uint8_t)BIT_MASK);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief Gets the WWDG Counter Value.
   *        This value could be used to check if WWDG is in the window, where
@@ -88,6 +94,8 @@ uint8_t WWDG_GetCounter(void)
   return(WWDG->CR);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Generates immediate WWDG RESET.
   * @param  None
@@ -97,6 +105,8 @@ void WWDG_SWReset(void)
 {
   WWDG->CR = WWDG_CR_WDGA; /* Activate WWDG, with clearing T6 */
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the WWDG window value.

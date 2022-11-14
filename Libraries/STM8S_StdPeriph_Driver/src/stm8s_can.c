@@ -39,20 +39,32 @@
 #define CAN_ACKNOWLEDGE_TIMEOUT ((uint16_t)0xFFFF)
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+extern __IO uint32_t _Id;
+extern __IO uint8_t _IDE;
+extern __IO uint8_t _RTR;
+extern __IO uint8_t _DLC;
+extern __IO uint8_t _Data[8];
+extern __IO uint8_t _FMI;
+/* Private function prototypes -----------------------------------------------*/
+static ITStatus CheckITStatus(uint8_t CAN_Reg, uint8_t It_Bit);
+
+// <--#SPLIT#--> //
+
+/* Private variables ---------------------------------------------------------*/
 __IO uint32_t _Id = 0;
 __IO uint8_t _IDE = 0;
 __IO uint8_t _RTR = 0;
 __IO uint8_t _DLC = 0;
 __IO uint8_t _Data[8] = {0};
 __IO uint8_t _FMI = 0;
-/* Private function prototypes -----------------------------------------------*/
-static ITStatus CheckITStatus(uint8_t CAN_Reg, uint8_t It_Bit);
 
 /* Private functions ---------------------------------------------------------*/
 /**
   * @addtogroup CAN_Public_Functions
   * @{
   */
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Deinitializes the CAN peripheral registers to their default reset values.
@@ -92,6 +104,8 @@ void CAN_DeInit(void)
   CAN->DGR = CAN_DGR_RESET_VALUE;
   CAN->PSR = CAN_PSR_RESET_VALUE;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the CAN peripheral according to the specified parameters.
@@ -174,6 +188,8 @@ CAN_InitStatus_TypeDef CAN_Init(CAN_MasterCtrl_TypeDef CAN_MasterCtrl,
   /* Return the status of initialization */
   return (CAN_InitStatus_TypeDef)InitStatus;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the CAN peripheral Filter according to the specified parameters.
@@ -478,6 +494,8 @@ void CAN_FilterInit(CAN_FilterNumber_TypeDef CAN_FilterNumber,
   CAN_SelectPage(can_page);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief   Enables or disables the specified CAN interrupts.
   * @param    CAN_IT: specifies the CAN interrupt sources to be enabled or disabled.
@@ -515,6 +533,8 @@ void CAN_ITConfig(CAN_IT_TypeDef CAN_IT, FunctionalState NewState)
   CAN_SelectPage(can_page);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief   Enables or Disables the ST7 CAN Compatibility.
   * if the ST7 compatibility is Enabled, CAN provides only 2 mailboxes.
@@ -532,6 +552,8 @@ void CAN_ST7CompatibilityCmd(CAN_ST7Compatibility_TypeDef CAN_ST7Compatibility)
   /*Set the old configuration of TXM2E */
   CAN->DGR |= (uint8_t)CAN_ST7Compatibility;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the CAN Time TriggerOperation communication mode.
@@ -574,6 +596,8 @@ void CAN_TTComModeCmd(FunctionalState NewState)
   /*Restore Last Page*/
   CAN_SelectPage(can_page);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initiates the transmission of a message.
@@ -664,6 +688,8 @@ CAN_TxStatus_TypeDef CAN_Transmit(uint32_t CAN_Id,
   return (CAN_TxStatus_TypeDef)CAN_TxStatus;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Checks the transmission of a message.
   * @param  CAN_TransmitMailbox : the number of the mailbox that is used for transmission, can be on of  @ref CAN_TransmitMailBox_TypeDef.
@@ -715,6 +741,8 @@ CAN_TxStatus_TypeDef CAN_TransmitStatus(CAN_TransmitMailBox_TypeDef CAN_Transmit
 
   return (CAN_TxStatus_TypeDef)tstate;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Cancels a transmit request.
@@ -814,6 +842,8 @@ void CAN_Receive(void)
   CAN_SelectPage(can_page);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the  CAN Id of the received message.
   * @param  None
@@ -826,6 +856,8 @@ uint32_t CAN_GetReceivedId(void)
 {
   return (_Id);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Gets the  CAN IDE of the received message.
@@ -840,6 +872,8 @@ CAN_Id_TypeDef CAN_GetReceivedIDE(void)
   return (CAN_Id_TypeDef)(_IDE);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the  CAN RTR of the received message.
   * @param  None
@@ -853,6 +887,8 @@ CAN_RTR_TypeDef CAN_GetReceivedRTR(void)
   return (CAN_RTR_TypeDef)(_RTR);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the  CAN DLC of the received message.
   * @param  None
@@ -865,6 +901,8 @@ uint8_t CAN_GetReceivedDLC(void)
 {
   return (_DLC);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Gets the  CAN Data of the received message.
@@ -881,6 +919,8 @@ uint8_t CAN_GetReceivedData(uint8_t CAN_DataIndex)
   return (_Data[CAN_DataIndex]);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the  CAN FMI of the received message.
   * @param  None
@@ -893,6 +933,8 @@ uint8_t CAN_GetReceivedFMI(void)
 {
   return (_FMI);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Returns the Received time stamp.
@@ -915,6 +957,8 @@ uint16_t CAN_GetMessageTimeStamp(void)
 
   return (uint16_t)(timestamp);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enters the Sleep low power mode.
@@ -939,6 +983,8 @@ CAN_Sleep_TypeDef CAN_Sleep(void)
   return (CAN_Sleep_TypeDef) sleepstatus;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Wakes the CAN up.
   * @param  None
@@ -961,6 +1007,8 @@ CAN_WakeUp_TypeDef CAN_WakeUp(void)
   /* At this step, sleep mode status */
   return (CAN_WakeUp_TypeDef)wakeupstatus;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Select the CAN Operation mode.
@@ -1043,6 +1091,8 @@ CAN_ModeStatus_TypeDef CAN_OperatingModeRequest(CAN_OperatingMode_TypeDef CAN_Op
   return (CAN_ModeStatus_TypeDef)(modestatus);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the  Last Error Code.
   * @param  None
@@ -1061,6 +1111,8 @@ CAN_ErrorCode_TypeDef CAN_GetLastErrorCode(void)
 
   return (CAN_ErrorCode_TypeDef)(errcode);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clears the CAN's pending flags.
@@ -1110,6 +1162,8 @@ void CAN_ClearFlag(CAN_FLAG_TypeDef CAN_Flag)
     CAN_SelectPage(can_page);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified CAN flag is set or not.
@@ -1194,6 +1248,8 @@ FlagStatus CAN_GetFlagStatus(CAN_FLAG_TypeDef CAN_Flag)
   /* Return the CAN_FLAG status */
   return  (FlagStatus)bitstatus;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified CAN interrupt has occurred or not.
@@ -1330,6 +1386,8 @@ ITStatus CAN_GetITStatus(CAN_IT_TypeDef CAN_IT)
   return  (ITStatus)pendingbitstatus;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief   Clears the CAN’s interrupt pending bits.
   * @param   CAN_IT: specifies the interrupt pending bit to clear,
@@ -1399,6 +1457,8 @@ void CAN_ClearITPendingBit(CAN_IT_TypeDef CAN_IT)
   CAN_SelectPage(can_page);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the selected registers page.
   * @param  None
@@ -1409,6 +1469,8 @@ CAN_Page_TypeDef CAN_GetSelectedPage(void)
   return (CAN_Page_TypeDef)(CAN->PSR);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the registers page to be selected.
   * @param  CAN_Page: the selected page which can be one of the @ref CAN_Page_TypeDef.
@@ -1418,6 +1480,8 @@ void CAN_SelectPage(CAN_Page_TypeDef CAN_Page)
 {
   CAN->PSR = (uint8_t)CAN_Page;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the CAN interrupt has occurred or not.

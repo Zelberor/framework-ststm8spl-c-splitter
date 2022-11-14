@@ -45,6 +45,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the GPIOx peripheral registers to their default reset values.
   * @param  GPIOx: Select the GPIO peripheral number (x = A to I).
@@ -58,6 +60,8 @@ void GPIO_DeInit(GPIO_TypeDef* GPIOx)
   GPIOx->CR2 = GPIO_CR2_RESET_VALUE; /* Reset Control Register 2 */
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Initializes the GPIOx according to the specified parameters.
   * @param  GPIOx : Select the GPIO peripheral number (x = A to I).
@@ -67,7 +71,6 @@ void GPIO_DeInit(GPIO_TypeDef* GPIOx)
   *         @ref GPIO_Mode_TypeDef enumeration.
   * @retval None
   */
-
 void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, GPIO_Mode_TypeDef GPIO_Mode)
 {
   /*----------------------*/
@@ -130,6 +133,8 @@ void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin, GPIO_Mode_TypeDef
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Writes data to the specified GPIO data port.
   * @note   The port must be configured in output mode.
@@ -142,6 +147,8 @@ void GPIO_Write(GPIO_TypeDef* GPIOx, uint8_t PortVal)
 {
   GPIOx->ODR = PortVal;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Writes high level to the specified GPIO pins.
@@ -156,6 +163,8 @@ void GPIO_WriteHigh(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef PortPins)
   GPIOx->ODR |= (uint8_t)PortPins;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Writes low level to the specified GPIO pins.
   * @note   The port must be configured in output mode.
@@ -168,6 +177,8 @@ void GPIO_WriteLow(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef PortPins)
 {
   GPIOx->ODR &= (uint8_t)(~PortPins);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Writes reverse level to the specified GPIO pins.
@@ -182,6 +193,8 @@ void GPIO_WriteReverse(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef PortPins)
   GPIOx->ODR ^= (uint8_t)PortPins;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Reads the specified GPIO output data port.
   * @note   The port must be configured in input mode.
@@ -192,6 +205,8 @@ uint8_t GPIO_ReadOutputData(GPIO_TypeDef* GPIOx)
 {
   return ((uint8_t)GPIOx->ODR);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Reads the specified GPIO input data port.
@@ -204,6 +219,8 @@ uint8_t GPIO_ReadInputData(GPIO_TypeDef* GPIOx)
   return ((uint8_t)GPIOx->IDR);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Reads the specified GPIO input data pin.
   * @param  GPIOx : Select the GPIO peripheral number (x = A to I).
@@ -214,6 +231,8 @@ BitStatus GPIO_ReadInputPin(GPIO_TypeDef* GPIOx, GPIO_Pin_TypeDef GPIO_Pin)
 {
   return ((BitStatus)(GPIOx->IDR & (uint8_t)GPIO_Pin));
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the external pull-up on GPIOx pins.

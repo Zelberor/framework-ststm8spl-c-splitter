@@ -45,6 +45,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the UART peripheral.
   * @param  None
@@ -69,6 +71,8 @@ void UART1_DeInit(void)
   UART1->GTR = UART1_GTR_RESET_VALUE;
   UART1->PSCR = UART1_PSCR_RESET_VALUE;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the UART1 according to the specified parameters.
@@ -175,6 +179,8 @@ void UART1_Init(uint32_t BaudRate, UART1_WordLength_TypeDef WordLength,
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enable the UART1 peripheral.
   * @param  NewState : The new state of the UART Communication.
@@ -194,6 +200,8 @@ void UART1_Cmd(FunctionalState NewState)
     UART1->CR1 |= UART1_CR1_UARTD;
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the specified USART interrupts.
@@ -256,6 +264,8 @@ void UART1_ITConfig(UART1_IT_TypeDef UART1_IT, FunctionalState NewState)
 
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the UART’s Half Duplex communication.
   * @param  NewState new state of the UART Communication.
@@ -276,6 +286,8 @@ void UART1_HalfDuplexCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the UART’s IrDA interface.
   * @param  UART1_IrDAMode specifies the IrDA mode.
@@ -295,6 +307,8 @@ void UART1_IrDAConfig(UART1_IrDAMode_TypeDef UART1_IrDAMode)
     UART1->CR5 &= ((uint8_t)~UART1_CR5_IRLP);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the UART’s IrDA interface.
@@ -319,6 +333,8 @@ void UART1_IrDACmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the UART1 LIN Break detection length.
   * @param  UART1_LINBreakDetectionLength specifies the LIN break detection length.
@@ -339,6 +355,8 @@ void UART1_LINBreakDetectionConfig(UART1_LINBreakDetectionLength_TypeDef UART1_L
     UART1->CR4 &= ((uint8_t)~UART1_CR4_LBDL);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the UART1’s LIN mode.
@@ -362,6 +380,8 @@ void UART1_LINCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the UART1 Smart Card mode.
   * @param  NewState: new state of the Smart Card mode.
@@ -383,6 +403,8 @@ void UART1_SmartCardCmd(FunctionalState NewState)
     UART1->CR5 &= ((uint8_t)(~UART1_CR5_SCEN));
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables NACK transmission.
@@ -407,6 +429,8 @@ void UART1_SmartCardNACKCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Selects the UART1 WakeUp method.
   * @param  UART1_WakeUp: specifies the UART1 wakeup method.
@@ -420,6 +444,8 @@ void UART1_WakeUpConfig(UART1_WakeUp_TypeDef UART1_WakeUp)
   UART1->CR1 &= ((uint8_t)~UART1_CR1_WAKE);
   UART1->CR1 |= (uint8_t)UART1_WakeUp;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Determines if the UART1 is in mute mode or not.
@@ -443,6 +469,8 @@ void UART1_ReceiverWakeUpCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Returns the most recent received data by the UART1 peripheral.
   * @param  None
@@ -452,6 +480,8 @@ uint8_t UART1_ReceiveData8(void)
 {
   return ((uint8_t)UART1->DR);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Returns the most recent received data by the UART1 peripheral.
@@ -466,6 +496,8 @@ uint16_t UART1_ReceiveData9(void)
   return (uint16_t)( (((uint16_t) UART1->DR) | temp ) & ((uint16_t)0x01FF));
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Transmits 8 bit data through the UART1 peripheral.
   * @param  Data: The data to transmit.
@@ -476,6 +508,8 @@ void UART1_SendData8(uint8_t Data)
   /* Transmit Data */
   UART1->DR = Data;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Transmits 9 bit data through the UART peripheral.
@@ -493,6 +527,8 @@ void UART1_SendData9(uint16_t Data)
   UART1->DR   = (uint8_t)(Data);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Transmits break characters.
   * @param  None
@@ -502,6 +538,8 @@ void UART1_SendBreak(void)
 {
   UART1->CR2 |= UART1_CR2_SBK;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the address of the UART1 node.
@@ -519,6 +557,8 @@ void UART1_SetAddress(uint8_t UART1_Address)
   UART1->CR4 |= UART1_Address;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the specified UART guard time.
   * @note   SmartCard Mode should be Enabled
@@ -530,6 +570,8 @@ void UART1_SetGuardTime(uint8_t UART1_GuardTime)
   /* Set the UART1 guard time */
   UART1->GTR = UART1_GuardTime;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the system clock prescaler.
@@ -558,6 +600,8 @@ void UART1_SetPrescaler(uint8_t UART1_Prescaler)
   /* Load the UART1 prescaler value*/
   UART1->PSCR = UART1_Prescaler;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified UART1 flag is set or not.
@@ -617,6 +661,8 @@ FlagStatus UART1_GetFlagStatus(UART1_Flag_TypeDef UART1_FLAG)
   return status;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Clears the UART1 flags.
   * @param  UART1_FLAG specifies the flag to clear
@@ -658,6 +704,8 @@ void UART1_ClearFlag(UART1_Flag_TypeDef UART1_FLAG)
     UART1->CR4 &= (uint8_t)~(UART1_CR4_LBDF);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified UART1 interrupt has occurred or not.
@@ -746,6 +794,8 @@ ITStatus UART1_GetITStatus(UART1_IT_TypeDef UART1_IT)
   /* Return the UART1_IT status*/
   return  pendingbitstatus;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clears the UART1 pending flags.

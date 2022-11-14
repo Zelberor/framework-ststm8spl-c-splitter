@@ -45,6 +45,8 @@
   */
 
 
+// <--#SPLIT#--> //
+
 /**
   * @brief   Checks whether the specified RST flag is set or not.
   * @param   RST_Flag : specify the reset flag to check.
@@ -59,6 +61,8 @@ FlagStatus RST_GetFlagStatus(RST_Flag_TypeDef RST_Flag)
   /* Get flag status */
   return((FlagStatus)(((uint8_t)(RST->SR & RST_Flag) == (uint8_t)0x00) ? RESET : SET));
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clears the specified RST flag.

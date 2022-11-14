@@ -45,6 +45,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the ADC2 peripheral registers to their default reset
   * values.
@@ -59,6 +61,8 @@ void ADC2_DeInit(void)
   ADC2->TDRH = ADC2_TDRH_RESET_VALUE;
   ADC2->TDRL = ADC2_TDRL_RESET_VALUE;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the ADC2 peripheral according to the specified parameters
@@ -113,6 +117,8 @@ void ADC2_Init(ADC2_ConvMode_TypeDef ADC2_ConversionMode, ADC2_Channel_TypeDef A
   ADC2->CR1 |= ADC2_CR1_ADON;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or Disables the ADC2 peripheral.
   * @param   NewState: specifies the peripheral enabled or disabled state.
@@ -132,6 +138,8 @@ void ADC2_Cmd(FunctionalState NewState)
     ADC2->CR1 &= (uint8_t)(~ADC2_CR1_ADON);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the ADC2 interrupt.
@@ -155,6 +163,8 @@ void ADC2_ITConfig(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configure the ADC2 prescaler division factor.
   * @param   ADC2_Prescaler: the selected prescaler.
@@ -171,6 +181,8 @@ void ADC2_PrescalerConfig(ADC2_PresSel_TypeDef ADC2_Prescaler)
   /* Select the prescaler division factor according to ADC2_PrescalerSelection values */
   ADC2->CR1 |= (uint8_t)(ADC2_Prescaler);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the ADC2 Schmitt Trigger on a selected channel.
@@ -223,6 +235,8 @@ void ADC2_SchmittTriggerConfig(ADC2_SchmittTrigg_TypeDef ADC2_SchmittTriggerChan
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configure the ADC2 conversion on selected channel.
   * @param   ADC2_ConversionMode Specifies the conversion type.
@@ -262,6 +276,8 @@ void ADC2_ConversionConfig(ADC2_ConvMode_TypeDef ADC2_ConversionMode, ADC2_Chann
   ADC2->CSR |= (uint8_t)(ADC2_Channel);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configure the ADC2 conversion on external trigger event.
   * @par Full description:
@@ -296,6 +312,8 @@ void ADC2_ExternalTriggerConfig(ADC2_ExtTrig_TypeDef ADC2_ExtTrigger, Functional
   ADC2->CR2 |= (uint8_t)(ADC2_ExtTrigger);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Start ADC2 conversion
   * @par Full description:
@@ -309,6 +327,8 @@ void ADC2_StartConversion(void)
 {
   ADC2->CR1 |= ADC2_CR1_ADON;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Get one sample of measured signal.
@@ -344,6 +364,8 @@ uint16_t ADC2_GetConversionValue(void)
   return ((uint16_t)temph);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Checks the ADC2 EOC flag status.
   * @param  None
@@ -355,6 +377,8 @@ FlagStatus ADC2_GetFlagStatus(void)
   return (FlagStatus)(ADC2->CSR & ADC2_CSR_EOC);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Clear the ADC2 EOC Flag.
   * @param  None
@@ -364,6 +388,8 @@ void ADC2_ClearFlag(void)
 {
   ADC2->CSR &= (uint8_t)(~ADC2_CSR_EOC);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Returns the EOC  pending bit status
@@ -375,6 +401,8 @@ ITStatus ADC2_GetITStatus(void)
 {
   return (ITStatus)(ADC2->CSR & ADC2_CSR_EOC);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clear the ADC2 End of Conversion pending bit.

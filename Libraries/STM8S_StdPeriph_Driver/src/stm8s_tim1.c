@@ -50,6 +50,8 @@ static void TI4_Config(uint8_t TIM1_ICPolarity, uint8_t TIM1_ICSelection,
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the TIM1 peripheral registers to their default reset values.
   * @param  None
@@ -100,6 +102,8 @@ void TIM1_DeInit(void)
   TIM1->SR1   = TIM1_SR1_RESET_VALUE;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Initializes the TIM1 Time Base Unit according to the specified parameters.
   * @param  TIM1_Prescaler specifies the Prescaler value.
@@ -131,6 +135,8 @@ void TIM1_TimeBaseInit(uint16_t TIM1_Prescaler,
   /* Set the Repetition Counter value */
   TIM1->RCR = TIM1_RepetitionCounter;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the TIM1 Channel1 according to the specified parameters.
@@ -194,6 +200,8 @@ void TIM1_OC1Init(TIM1_OCMode_TypeDef TIM1_OCMode,
   TIM1->CCR1H = (uint8_t)(TIM1_Pulse >> 8);
   TIM1->CCR1L = (uint8_t)(TIM1_Pulse);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the TIM1 Channel2 according to the specified parameters.
@@ -259,6 +267,8 @@ void TIM1_OC2Init(TIM1_OCMode_TypeDef TIM1_OCMode,
   TIM1->CCR2L = (uint8_t)(TIM1_Pulse);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Initializes the TIM1 Channel3 according to the specified parameters.
   * @param  TIM1_OCMode specifies the Output Compare mode  from
@@ -322,6 +332,8 @@ void TIM1_OC3Init(TIM1_OCMode_TypeDef TIM1_OCMode,
   TIM1->CCR3L = (uint8_t)(TIM1_Pulse);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Initializes the TIM1 Channel4 according to the specified parameters.
   * @param  TIM1_OCMode specifies the Output Compare mode  from
@@ -372,6 +384,8 @@ void TIM1_OC4Init(TIM1_OCMode_TypeDef TIM1_OCMode,
   TIM1->CCR4L = (uint8_t)(TIM1_Pulse);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the Break feature, dead time, Lock level, the OSSI,
   *         and the AOE(automatic output enable).
@@ -407,6 +421,8 @@ void TIM1_BDTRConfig(TIM1_OSSIState_TypeDef TIM1_OSSIState,
                           (uint8_t)((uint8_t)(TIM1_Break | (uint8_t)TIM1_BreakPolarity)  |
                           (uint8_t)TIM1_AutomaticOutput));
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the TIM1 peripheral according to the specified parameters.
@@ -470,6 +486,8 @@ void TIM1_ICInit(TIM1_Channel_TypeDef TIM1_Channel,
     TIM1_SetIC4Prescaler(TIM1_ICPrescaler);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the TIM1 peripheral in PWM Input Mode according to the
@@ -552,6 +570,8 @@ void TIM1_PWMIConfig(TIM1_Channel_TypeDef TIM1_Channel,
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the TIM1 peripheral.
   * @param  NewState new state of the TIM1 peripheral.
@@ -573,6 +593,8 @@ void TIM1_Cmd(FunctionalState NewState)
     TIM1->CR1 &= (uint8_t)(~TIM1_CR1_CEN);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the TIM1 peripheral Main Outputs.
@@ -596,6 +618,8 @@ void TIM1_CtrlPWMOutputs(FunctionalState NewState)
     TIM1->BKR &= (uint8_t)(~TIM1_BKR_MOE);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the specified TIM1 interrupts.
@@ -632,6 +656,8 @@ void TIM1_ITConfig(TIM1_IT_TypeDef  TIM1_IT, FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the TIM1 internal Clock.
   * @param  None
@@ -642,6 +668,8 @@ void TIM1_InternalClockConfig(void)
   /* Disable slave mode to clock the prescaler directly with the internal clock */
   TIM1->SMCR &= (uint8_t)(~TIM1_SMCR_SMS);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the TIM1 External clock Mode1.
@@ -675,6 +703,8 @@ void TIM1_ETRClockMode1Config(TIM1_ExtTRGPSC_TypeDef TIM1_ExtTRGPrescaler,
                          | (uint8_t)((uint8_t)TIM1_SLAVEMODE_EXTERNAL1 | TIM1_TS_ETRF ));
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the TIM1 External clock Mode2.
   * @param  TIM1_ExtTRGPrescaler specifies the external Trigger Prescaler.
@@ -706,6 +736,8 @@ void TIM1_ETRClockMode2Config(TIM1_ExtTRGPSC_TypeDef TIM1_ExtTRGPrescaler,
   TIM1->ETR |= TIM1_ETR_ECE;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the TIM1 External Trigger.
   * @param  TIM1_ExtTRGPrescaler specifies the external Trigger Prescaler.
@@ -732,6 +764,8 @@ void TIM1_ETRConfig(TIM1_ExtTRGPSC_TypeDef TIM1_ExtTRGPrescaler,
   TIM1->ETR |= (uint8_t)((uint8_t)(TIM1_ExtTRGPrescaler | (uint8_t)TIM1_ExtTRGPolarity )|
                          (uint8_t)ExtTRGFilter );
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the TIM1 Trigger as External Clock.
@@ -774,6 +808,8 @@ void TIM1_TIxExternalClockConfig(TIM1_TIxExternalCLK1Source_TypeDef TIM1_TIxExte
   TIM1->SMCR |= (uint8_t)(TIM1_SLAVEMODE_EXTERNAL1);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Selects the TIM1 Input Trigger source.
   * @param   TIM1_InputTriggerSource specifies Input Trigger source.
@@ -793,13 +829,14 @@ void TIM1_SelectInputTrigger(TIM1_TS_TypeDef TIM1_InputTriggerSource)
   TIM1->SMCR = (uint8_t)((uint8_t)(TIM1->SMCR & (uint8_t)(~TIM1_SMCR_TS)) | (uint8_t)TIM1_InputTriggerSource);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or Disables the TIM1 Update event.
   * @param   NewState new state of the TIM1 peripheral Preload register. This parameter can
   * be ENABLE or DISABLE.
   * @retval None
   */
-
 void TIM1_UpdateDisableConfig(FunctionalState NewState)
 {
   /* Check the parameters */
@@ -815,6 +852,8 @@ void TIM1_UpdateDisableConfig(FunctionalState NewState)
     TIM1->CR1 &= (uint8_t)(~TIM1_CR1_UDIS);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Selects the TIM1 Update Request Interrupt source.
@@ -840,6 +879,8 @@ void TIM1_UpdateRequestConfig(TIM1_UpdateSource_TypeDef TIM1_UpdateSource)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or Disables the TIM1’s Hall sensor interface.
   * @param   NewState new state of the TIM1 Hall sensor interface.This parameter can
@@ -861,6 +902,8 @@ void TIM1_SelectHallSensor(FunctionalState NewState)
     TIM1->CR2 &= (uint8_t)(~TIM1_CR2_TI1S);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Selects the TIM1’s One Pulse Mode.
@@ -887,6 +930,8 @@ void TIM1_SelectOnePulseMode(TIM1_OPMode_TypeDef TIM1_OPMode)
 
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Selects the TIM1 Trigger Output Mode.
   * @param   TIM1_TRGOSource specifies the Trigger Output source.
@@ -910,6 +955,8 @@ void TIM1_SelectOutputTrigger(TIM1_TRGOSource_TypeDef TIM1_TRGOSource)
                         (uint8_t) TIM1_TRGOSource);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Selects the TIM1 Slave Mode.
   * @param   TIM1_SlaveMode specifies the TIM1 Slave Mode.
@@ -929,6 +976,8 @@ void TIM1_SelectSlaveMode(TIM1_SlaveMode_TypeDef TIM1_SlaveMode)
   TIM1->SMCR = (uint8_t)((uint8_t)(TIM1->SMCR & (uint8_t)(~TIM1_SMCR_SMS)) |
                          (uint8_t)TIM1_SlaveMode);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets or Resets the TIM1 Master/Slave Mode.
@@ -951,6 +1000,8 @@ void TIM1_SelectMasterSlaveMode(FunctionalState NewState)
     TIM1->SMCR &= (uint8_t)(~TIM1_SMCR_MSM);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the TIM1 Encoder Interface.
@@ -1010,6 +1061,8 @@ void TIM1_EncoderInterfaceConfig(TIM1_EncoderMode_TypeDef TIM1_EncoderMode,
                           | (uint8_t) CCMR_TIxDirect_Set);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the TIM1 Prescaler.
   * @param   Prescaler specifies the Prescaler Register value
@@ -1034,6 +1087,8 @@ void TIM1_PrescalerConfig(uint16_t Prescaler,
   TIM1->EGR = (uint8_t)TIM1_PSCReloadMode;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Specifies the TIM1 Counter Mode to be used.
   * @param   TIM1_CounterMode specifies the Counter Mode to be used
@@ -1056,6 +1111,8 @@ void TIM1_CounterModeConfig(TIM1_CounterMode_TypeDef TIM1_CounterMode)
                         | (uint8_t)TIM1_CounterMode);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Forces the TIM1 Channel1 output waveform to active or inactive level.
   * @param   TIM1_ForcedAction specifies the forced Action to be set to the output waveform.
@@ -1074,6 +1131,8 @@ void TIM1_ForcedOC1Config(TIM1_ForcedAction_TypeDef TIM1_ForcedAction)
                            (uint8_t)TIM1_ForcedAction);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Forces the TIM1 Channel2 output waveform to active or inactive level.
   * @param   TIM1_ForcedAction specifies the forced Action to be set to the output waveform.
@@ -1091,6 +1150,8 @@ void TIM1_ForcedOC2Config(TIM1_ForcedAction_TypeDef TIM1_ForcedAction)
   TIM1->CCMR2  =  (uint8_t)((uint8_t)(TIM1->CCMR2 & (uint8_t)(~TIM1_CCMR_OCM))
                             | (uint8_t)TIM1_ForcedAction);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Forces the TIM1 Channel3 output waveform to active or inactive level.
@@ -1111,6 +1172,8 @@ void TIM1_ForcedOC3Config(TIM1_ForcedAction_TypeDef TIM1_ForcedAction)
                             | (uint8_t)TIM1_ForcedAction);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Forces the TIM1 Channel4 output waveform to active or inactive level.
   * @param   TIM1_ForcedAction specifies the forced Action to be set to the output waveform.
@@ -1129,6 +1192,8 @@ void TIM1_ForcedOC4Config(TIM1_ForcedAction_TypeDef TIM1_ForcedAction)
   TIM1->CCMR4  =  (uint8_t)((uint8_t)(TIM1->CCMR4 & (uint8_t)(~TIM1_CCMR_OCM))
                             | (uint8_t)TIM1_ForcedAction);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables TIM1 peripheral Preload register on ARR.
@@ -1152,6 +1217,8 @@ void TIM1_ARRPreloadConfig(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Selects the TIM1 peripheral Commutation event.
   * @param   NewState new state of the Commutation event.
@@ -1173,6 +1240,8 @@ void TIM1_SelectCOM(FunctionalState NewState)
     TIM1->CR2 &= (uint8_t)(~TIM1_CR2_COMS);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets or Resets the TIM1 peripheral Capture Compare Preload Control bit.
@@ -1196,6 +1265,8 @@ void TIM1_CCPreloadControl(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the TIM1 peripheral Preload Register on CCR1.
   * @param   NewState new state of the Capture Compare Preload register.
@@ -1217,6 +1288,8 @@ void TIM1_OC1PreloadConfig(FunctionalState NewState)
     TIM1->CCMR1 &= (uint8_t)(~TIM1_CCMR_OCxPE);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the TIM1 peripheral Preload Register on CCR2.
@@ -1240,6 +1313,8 @@ void TIM1_OC2PreloadConfig(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the TIM1 peripheral Preload Register on CCR3.
   * @param   NewState new state of the Capture Compare Preload register.
@@ -1261,6 +1336,8 @@ void TIM1_OC3PreloadConfig(FunctionalState NewState)
     TIM1->CCMR3 &= (uint8_t)(~TIM1_CCMR_OCxPE);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the TIM1 peripheral Preload Register on CCR4.
@@ -1284,6 +1361,8 @@ void TIM1_OC4PreloadConfig(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the TIM1 Capture Compare 1 Fast feature.
   * @param   NewState new state of the Output Compare Fast Enable bit.
@@ -1305,6 +1384,8 @@ void TIM1_OC1FastConfig(FunctionalState NewState)
     TIM1->CCMR1 &= (uint8_t)(~TIM1_CCMR_OCxFE);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the TIM1 Capture Compare 2 Fast feature.
@@ -1328,6 +1409,8 @@ void TIM1_OC2FastConfig(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the TIM1 Capture Compare 3 Fast feature.
   * @param   NewState new state of the Output Compare Fast Enable bit.
@@ -1349,6 +1432,8 @@ void TIM1_OC3FastConfig(FunctionalState NewState)
     TIM1->CCMR3 &= (uint8_t)(~TIM1_CCMR_OCxFE);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the TIM1 Capture Compare 4 Fast feature.
@@ -1372,6 +1457,8 @@ void TIM1_OC4FastConfig(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the TIM1 event to be generated by software.
   * @param   TIM1_EventSource specifies the event source.
@@ -1394,6 +1481,8 @@ void TIM1_GenerateEvent(TIM1_EventSource_TypeDef TIM1_EventSource)
   /* Set the event sources */
   TIM1->EGR = (uint8_t)TIM1_EventSource;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the TIM1 Channel 1 polarity.
@@ -1419,6 +1508,8 @@ void TIM1_OC1PolarityConfig(TIM1_OCPolarity_TypeDef TIM1_OCPolarity)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the TIM1 Channel 1N polarity.
   * @param   TIM1_OCNPolarity specifies the OC1N Polarity.
@@ -1442,6 +1533,8 @@ void TIM1_OC1NPolarityConfig(TIM1_OCNPolarity_TypeDef TIM1_OCNPolarity)
     TIM1->CCER1 &= (uint8_t)(~TIM1_CCER1_CC1NP);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the TIM1 Channel 2 polarity.
@@ -1467,6 +1560,8 @@ void TIM1_OC2PolarityConfig(TIM1_OCPolarity_TypeDef TIM1_OCPolarity)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the TIM1 Channel 2N polarity.
   * @param   TIM1_OCNPolarity specifies the OC2N Polarity.
@@ -1490,6 +1585,8 @@ void TIM1_OC2NPolarityConfig(TIM1_OCNPolarity_TypeDef TIM1_OCNPolarity)
     TIM1->CCER1 &= (uint8_t)(~TIM1_CCER1_CC2NP);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the TIM1 Channel 3 polarity.
@@ -1515,6 +1612,7 @@ void TIM1_OC3PolarityConfig(TIM1_OCPolarity_TypeDef TIM1_OCPolarity)
   }
 }
 
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configures the TIM1 Channel 3N polarity.
@@ -1540,6 +1638,8 @@ void TIM1_OC3NPolarityConfig(TIM1_OCNPolarity_TypeDef TIM1_OCNPolarity)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the TIM1 Channel 4 polarity.
   * @param   TIM1_OCPolarity specifies the OC4 Polarity.
@@ -1563,6 +1663,8 @@ void TIM1_OC4PolarityConfig(TIM1_OCPolarity_TypeDef TIM1_OCPolarity)
     TIM1->CCER2 &= (uint8_t)(~TIM1_CCER2_CC4P);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the TIM1 Capture Compare Channel x (x=1,..,4).
@@ -1633,6 +1735,8 @@ void TIM1_CCxCmd(TIM1_Channel_TypeDef TIM1_Channel, FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the TIM1 Capture Compare Channel xN (xN=1,..,3).
   * @param   TIM1_Channel specifies the TIM1 Channel.
@@ -1687,6 +1791,8 @@ void TIM1_CCxNCmd(TIM1_Channel_TypeDef TIM1_Channel, FunctionalState NewState)
     }
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Selects the TIM1 Output Compare Mode. This function disables the
@@ -1753,6 +1859,8 @@ void TIM1_SelectOCxM(TIM1_Channel_TypeDef TIM1_Channel, TIM1_OCMode_TypeDef TIM1
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the TIM1 Counter Register value.
   * @param   Counter specifies the Counter register new value.
@@ -1765,6 +1873,8 @@ void TIM1_SetCounter(uint16_t Counter)
   TIM1->CNTRH = (uint8_t)(Counter >> 8);
   TIM1->CNTRL = (uint8_t)(Counter);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the TIM1 Autoreload Register value.
@@ -1792,6 +1902,8 @@ void TIM1_SetCompare1(uint16_t Compare1)
   TIM1->CCR1L = (uint8_t)(Compare1);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the TIM1 Capture Compare2 Register value.
   * @param   Compare2 specifies the Capture Compare2 register new value.
@@ -1804,6 +1916,8 @@ void TIM1_SetCompare2(uint16_t Compare2)
   TIM1->CCR2H = (uint8_t)(Compare2 >> 8);
   TIM1->CCR2L = (uint8_t)(Compare2);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the TIM1 Capture Compare3 Register value.
@@ -1818,6 +1932,8 @@ void TIM1_SetCompare3(uint16_t Compare3)
   TIM1->CCR3L = (uint8_t)(Compare3);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the TIM1 Capture Compare4 Register value.
   * @param   Compare4 specifies the Capture Compare4 register new value.
@@ -1830,6 +1946,8 @@ void TIM1_SetCompare4(uint16_t Compare4)
   TIM1->CCR4H = (uint8_t)(Compare4 >> 8);
   TIM1->CCR4L = (uint8_t)(Compare4);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the TIM1 Input Capture 1 prescaler.
@@ -1850,6 +1968,8 @@ void TIM1_SetIC1Prescaler(TIM1_ICPSC_TypeDef TIM1_IC1Prescaler)
   TIM1->CCMR1 = (uint8_t)((uint8_t)(TIM1->CCMR1 & (uint8_t)(~TIM1_CCMR_ICxPSC))
                           | (uint8_t)TIM1_IC1Prescaler);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the TIM1 Input Capture 2 prescaler.
@@ -1872,6 +1992,8 @@ void TIM1_SetIC2Prescaler(TIM1_ICPSC_TypeDef TIM1_IC2Prescaler)
                           | (uint8_t)TIM1_IC2Prescaler);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the TIM1 Input Capture 3 prescaler.
   * @param   TIM1_IC3Prescaler specifies the Input Capture prescaler new value
@@ -1892,6 +2014,8 @@ void TIM1_SetIC3Prescaler(TIM1_ICPSC_TypeDef TIM1_IC3Prescaler)
   TIM1->CCMR3 = (uint8_t)((uint8_t)(TIM1->CCMR3 & (uint8_t)(~TIM1_CCMR_ICxPSC)) |
                           (uint8_t)TIM1_IC3Prescaler);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the TIM1 Input Capture 4 prescaler.
@@ -1914,6 +2038,8 @@ void TIM1_SetIC4Prescaler(TIM1_ICPSC_TypeDef TIM1_IC4Prescaler)
                           (uint8_t)TIM1_IC4Prescaler);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the TIM1 Input Capture 1 value.
   * @param  None
@@ -1934,6 +2060,8 @@ uint16_t TIM1_GetCapture1(void)
   /* Get the Capture 1 Register value */
   return (uint16_t)tmpccr1;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Gets the TIM1 Input Capture 2 value.
@@ -1956,6 +2084,8 @@ uint16_t TIM1_GetCapture2(void)
   return (uint16_t)tmpccr2;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the TIM1 Input Capture 3 value.
   * @param  None
@@ -1975,6 +2105,8 @@ uint16_t TIM1_GetCapture3(void)
   /* Get the Capture 3 Register value */
   return (uint16_t)tmpccr3;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Gets the TIM1 Input Capture 4 value.
@@ -1996,6 +2128,8 @@ uint16_t TIM1_GetCapture4(void)
   return (uint16_t)tmpccr4;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the TIM1 Counter value.
   * @param  None
@@ -2011,6 +2145,8 @@ uint16_t TIM1_GetCounter(void)
   return (uint16_t)(tmpcntr | (uint16_t)(TIM1->CNTRL));
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Gets the TIM1 Prescaler value.
   * @param  None
@@ -2025,6 +2161,8 @@ uint16_t TIM1_GetPrescaler(void)
   /* Get the Prescaler Register value */
   return (uint16_t)( temp | (uint16_t)(TIM1->PSCRL));
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified TIM1 flag is set or not.
@@ -2066,6 +2204,8 @@ FlagStatus TIM1_GetFlagStatus(TIM1_FLAG_TypeDef TIM1_FLAG)
   return (FlagStatus)(bitstatus);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Clears the TIM1’s pending flags.
   * @param  TIM1_FLAG specifies the flag to clear.
@@ -2094,6 +2234,8 @@ void TIM1_ClearFlag(TIM1_FLAG_TypeDef TIM1_FLAG)
   TIM1->SR2 = (uint8_t)((uint8_t)(~((uint8_t)((uint16_t)TIM1_FLAG >> 8))) &
                         (uint8_t)0x1E);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the TIM1 interrupt has occurred or not.
@@ -2132,6 +2274,8 @@ ITStatus TIM1_GetITStatus(TIM1_IT_TypeDef TIM1_IT)
   return (ITStatus)(bitstatus);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Clears the TIM1's interrupt pending bits.
   * @param  TIM1_IT specifies the pending bit to clear.
@@ -2154,6 +2298,8 @@ void TIM1_ClearITPendingBit(TIM1_IT_TypeDef TIM1_IT)
   /* Clear the IT pending Bit */
   TIM1->SR1 = (uint8_t)(~(uint8_t)TIM1_IT);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configure the TI1 as Input.
@@ -2196,6 +2342,8 @@ static void TI1_Config(uint8_t TIM1_ICPolarity,
   TIM1->CCER1 |=  TIM1_CCER1_CC1E;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configure the TI2 as Input.
   * @param  TIM1_ICPolarity  The Input Polarity.
@@ -2234,6 +2382,8 @@ static void TI2_Config(uint8_t TIM1_ICPolarity,
   /* Set the CCE Bit */
   TIM1->CCER1 |=  TIM1_CCER1_CC2E;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configure the TI3 as Input.
@@ -2274,6 +2424,8 @@ static void TI3_Config(uint8_t TIM1_ICPolarity,
   /* Set the CCE Bit */
   TIM1->CCER2 |=  TIM1_CCER2_CC3E;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configure the TI4 as Input.

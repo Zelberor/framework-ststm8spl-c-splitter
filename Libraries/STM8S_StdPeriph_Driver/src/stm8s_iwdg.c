@@ -39,6 +39,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables write access to Prescaler and Reload registers.
   * @param  IWDG_WriteAccess : New state of write access to Prescaler and Reload
@@ -52,6 +54,8 @@ void IWDG_WriteAccessCmd(IWDG_WriteAccess_TypeDef IWDG_WriteAccess)
 
   IWDG->KR = (uint8_t)IWDG_WriteAccess; /* Write Access */
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets IWDG Prescaler value.
@@ -68,6 +72,8 @@ void IWDG_SetPrescaler(IWDG_Prescaler_TypeDef IWDG_Prescaler)
   IWDG->PR = (uint8_t)IWDG_Prescaler;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets IWDG Reload value.
   * @note   Write access should be enabled
@@ -80,6 +86,8 @@ void IWDG_SetReload(uint8_t IWDG_Reload)
   IWDG->RLR = IWDG_Reload;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Reloads IWDG counter
   * @note   Write access should be enabled
@@ -90,6 +98,8 @@ void IWDG_ReloadCounter(void)
 {
   IWDG->KR = IWDG_KEY_REFRESH;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables IWDG.

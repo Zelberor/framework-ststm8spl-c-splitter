@@ -45,6 +45,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the BEEP peripheral registers to their default reset
   * values.
@@ -55,6 +57,8 @@ void BEEP_DeInit(void)
 {
   BEEP->CSR = BEEP_CSR_RESET_VALUE;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the BEEP function according to the specified parameters.
@@ -81,6 +85,8 @@ void BEEP_Init(BEEP_Frequency_TypeDef BEEP_Frequency)
   BEEP->CSR |= (uint8_t)(BEEP_Frequency);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enable or disable the BEEP function.
   * @param   NewState Indicates the new state of the BEEP function.
@@ -101,6 +107,8 @@ void BEEP_Cmd(FunctionalState NewState)
     BEEP->CSR &= (uint8_t)(~BEEP_CSR_BEEPEN);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Update CSR register with the measured LSI frequency.

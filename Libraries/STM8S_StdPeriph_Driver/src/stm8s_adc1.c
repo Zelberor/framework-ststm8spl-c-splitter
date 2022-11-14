@@ -44,6 +44,8 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the ADC1 peripheral registers to their default reset values.
   * @param  None
@@ -64,6 +66,8 @@ void ADC1_DeInit(void)
   ADC1->AWCRH = ADC1_AWCRH_RESET_VALUE;
   ADC1->AWCRL = ADC1_AWCRL_RESET_VALUE;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the ADC1 peripheral according to the specified parameters
@@ -118,6 +122,8 @@ void ADC1_Init(ADC1_ConvMode_TypeDef ADC1_ConversionMode, ADC1_Channel_TypeDef A
   ADC1->CR1 |= ADC1_CR1_ADON;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or Disables the ADC1 peripheral.
   * @param  NewState: specifies the peripheral enabled or disabled state.
@@ -137,6 +143,8 @@ void ADC1_Cmd(FunctionalState NewState)
     ADC1->CR1 &= (uint8_t)(~ADC1_CR1_ADON);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or Disables the ADC1 scan mode.
@@ -158,6 +166,8 @@ void ADC1_ScanModeCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or Disables the ADC1 data store into the Data Buffer registers rather than in the Data Register
   * @param   NewState: specifies the selected mode enabled or disabled state.
@@ -177,6 +187,8 @@ void ADC1_DataBufferCmd(FunctionalState NewState)
     ADC1->CR3 &= (uint8_t)(~ADC1_CR3_DBUF);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the ADC1 interrupt.
@@ -205,6 +217,8 @@ void ADC1_ITConfig(ADC1_IT_TypeDef ADC1_IT, FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configure the ADC1 prescaler division factor.
   * @param   ADC1_Prescaler: the selected precaler.
@@ -221,6 +235,8 @@ void ADC1_PrescalerConfig(ADC1_PresSel_TypeDef ADC1_Prescaler)
   /* Select the prescaler division factor according to ADC1_PrescalerSelection values */
   ADC1->CR1 |= (uint8_t)(ADC1_Prescaler);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the ADC1 Schmitt Trigger on a selected channel.
@@ -273,6 +289,8 @@ void ADC1_SchmittTriggerConfig(ADC1_SchmittTrigg_TypeDef ADC1_SchmittTriggerChan
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configure the ADC1 conversion on selected channel.
   * @param   ADC1_ConversionMode Specifies the conversion type.
@@ -312,6 +330,8 @@ void ADC1_ConversionConfig(ADC1_ConvMode_TypeDef ADC1_ConversionMode, ADC1_Chann
   ADC1->CSR |= (uint8_t)(ADC1_Channel);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configure the ADC1 conversion on external trigger event.
   * @par Full description:
@@ -346,6 +366,8 @@ void ADC1_ExternalTriggerConfig(ADC1_ExtTrig_TypeDef ADC1_ExtTrigger, Functional
   ADC1->CR2 |= (uint8_t)(ADC1_ExtTrigger);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Start ADC1 conversion
   * @par Full description:
@@ -359,6 +381,8 @@ void ADC1_StartConversion(void)
 {
   ADC1->CR1 |= ADC1_CR1_ADON;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Get one sample of measured signal.
@@ -393,6 +417,8 @@ uint16_t ADC1_GetConversionValue(void)
 
   return ((uint16_t)temph);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the analog watchdog for the given channel.
@@ -432,6 +458,8 @@ void ADC1_AWDChannelConfig(ADC1_Channel_TypeDef Channel, FunctionalState NewStat
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the high threshold of the analog watchdog.
   * @param   Threshold specifies the high threshold value.
@@ -444,6 +472,8 @@ void ADC1_SetHighThreshold(uint16_t Threshold)
   ADC1->HTRL = (uint8_t)Threshold;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the low threshold of the analog watchdog.
   * @param   Threshold specifies the low threshold value.
@@ -455,6 +485,8 @@ void ADC1_SetLowThreshold(uint16_t Threshold)
   ADC1->LTRL = (uint8_t)Threshold;
   ADC1->LTRH = (uint8_t)(Threshold >> (uint8_t)2);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Get one sample of measured signal.
@@ -493,6 +525,8 @@ uint16_t ADC1_GetBufferValue(uint8_t Buffer)
   return ((uint16_t)temph);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Checks the specified analog watchdog channel status.
   * @param   Channel: specify the channel of which to check the analog watchdog
@@ -517,6 +551,8 @@ FlagStatus ADC1_GetAWDChannelStatus(ADC1_Channel_TypeDef Channel)
 
   return ((FlagStatus)status);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks the specified ADC1 flag status.
@@ -558,6 +594,8 @@ FlagStatus ADC1_GetFlagStatus(ADC1_Flag_TypeDef Flag)
 
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Clear the specified ADC1 Flag.
   * @param   Flag: ADC1 flag.
@@ -594,6 +632,8 @@ void ADC1_ClearFlag(ADC1_Flag_TypeDef Flag)
     ADC1->CSR &= (uint8_t) (~Flag);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Returns the specified pending bit status
@@ -640,6 +680,8 @@ ITStatus ADC1_GetITStatus(ADC1_IT_TypeDef ITPendingBit)
   }
   return ((ITStatus)itstatus);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clear the ADC1 End of Conversion pending bit.

@@ -28,6 +28,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm8s_awu.h"
 
+extern CONST uint8_t APR_Array[17];
+extern CONST uint8_t TBR_Array[17];
+
 /** @addtogroup STM8S_StdPeriph_Driver
   * @{
   */
@@ -37,6 +40,8 @@
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
+
+// <--#SPLIT#--> //
 
 /* See also AWU_Timebase_TypeDef structure in stm8s_awu.h file :
                           N   2   5   1   2   4   8   1   3   6   1   2   5   1   2   1   3
@@ -64,6 +69,8 @@ CONST uint8_t TBR_Array[17] =
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the AWU peripheral registers to their default reset
   * values.
@@ -76,6 +83,8 @@ void AWU_DeInit(void)
   AWU->APR = AWU_APR_RESET_VALUE;
   AWU->TBR = AWU_TBR_RESET_VALUE;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the AWU peripheral according to the specified parameters.
@@ -102,6 +111,8 @@ void AWU_Init(AWU_Timebase_TypeDef AWU_TimeBase)
   AWU->APR |= APR_Array[(uint8_t)AWU_TimeBase];
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enable or disable the AWU peripheral.
   * @param   NewState Indicates the new state of the AWU peripheral.
@@ -122,6 +133,8 @@ void AWU_Cmd(FunctionalState NewState)
     AWU->CSR &= (uint8_t)(~AWU_CSR_AWUEN);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Update APR register with the measured LSI frequency.
@@ -160,6 +173,8 @@ void AWU_LSICalibrationConfig(uint32_t LSIFreqHz)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures AWU in Idle mode to reduce power consumption.
   * @param  None
@@ -173,6 +188,8 @@ void AWU_IdleModeEnable(void)
   /* No AWU timebase */
   AWU->TBR = (uint8_t)(~AWU_TBR_AWUTB);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Returns status of the AWU peripheral flag.

@@ -44,12 +44,13 @@
   * @{
   */
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Deinitializes the UART peripheral.
   * @param  None
   * @retval None
   */
-
 void UART4_DeInit(void)
 {
   /*  Clear the Idle Line Detected bit in the status register by a read
@@ -67,6 +68,8 @@ void UART4_DeInit(void)
   UART4->CR5 = UART4_CR5_RESET_VALUE; /*  Set UART4_CR5 to reset value 0x00  */
   UART4->CR6 = UART4_CR6_RESET_VALUE; /*  Set UART4_CR6 to reset value 0x00  */
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Initializes the UART4 according to the specified parameters.
@@ -172,6 +175,8 @@ void UART4_Init(uint32_t BaudRate, UART4_WordLength_TypeDef WordLength, UART4_St
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enable the UART4 peripheral.
   * @param  NewState : The new state of the UART Communication.
@@ -191,6 +196,8 @@ void UART4_Cmd(FunctionalState NewState)
     UART4->CR1 |= UART4_CR1_UARTD;
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the specified UART4 interrupts.
@@ -263,6 +270,8 @@ void UART4_ITConfig(UART4_IT_TypeDef UART4_IT, FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the UART’s Half Duplex communication.
   * @param  NewState new state of the UART Communication.
@@ -283,6 +292,8 @@ void UART4_HalfDuplexCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Configures the UART4’s IrDA interface.
   * @param  UART4_IrDAMode specifies the IrDA mode.
@@ -302,6 +313,8 @@ void UART4_IrDAConfig(UART4_IrDAMode_TypeDef UART4_IrDAMode)
     UART4->CR5 &= ((uint8_t)~UART4_CR5_IRLP);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the UART4’s IrDA interface.
@@ -326,6 +339,8 @@ void UART4_IrDACmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the UART4 LIN Break detection length.
   * @param  UART4_LINBreakDetectionLength specifies the LIN break detection length.
@@ -347,6 +362,8 @@ void UART4_LINBreakDetectionConfig(UART4_LINBreakDetectionLength_TypeDef UART4_L
     UART4->CR4 &= ((uint8_t)~UART4_CR4_LBDL);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Configure the UART4 peripheral.
@@ -395,6 +412,8 @@ void UART4_LINConfig(UART4_LinMode_TypeDef UART4_Mode,
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables the UART4 LIN mode.
   * @param  NewState is new state of the UART4 LIN mode.
@@ -416,6 +435,8 @@ void UART4_LINCmd(FunctionalState NewState)
     UART4->CR3 &= ((uint8_t)~UART4_CR3_LINEN);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Enables or disables the UART4 Smart Card mode.
@@ -440,6 +461,8 @@ void UART4_SmartCardCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Enables or disables NACK transmission.
   * @param  NewState: new state of the Smart Card mode.
@@ -463,6 +486,8 @@ void UART4_SmartCardNACKCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Selects the UART4 WakeUp method.
   * @param  UART4_WakeUp: specifies the UART4 wakeup method.
@@ -476,6 +501,8 @@ void UART4_WakeUpConfig(UART4_WakeUp_TypeDef UART4_WakeUp)
   UART4->CR1 &= ((uint8_t)~UART4_CR1_WAKE);
   UART4->CR1 |= (uint8_t)UART4_WakeUp;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Determines if the UART4 is in mute mode or not.
@@ -499,6 +526,8 @@ void UART4_ReceiverWakeUpCmd(FunctionalState NewState)
   }
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Returns the most recent received data by the UART4 peripheral.
   * @param  None
@@ -508,6 +537,8 @@ uint8_t UART4_ReceiveData8(void)
 {
   return ((uint8_t)UART4->DR);
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Returns the most recent received data by the UART4 peripheral.
@@ -523,6 +554,8 @@ uint16_t UART4_ReceiveData9(void)
   return (uint16_t)((((uint16_t)UART4->DR) | temp) & ((uint16_t)0x01FF));
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Transmits 8 bit data through the UART4 peripheral.
   * @param  Data: the data to transmit.
@@ -533,6 +566,8 @@ void UART4_SendData8(uint8_t Data)
   /* Transmit Data */
   UART4->DR = Data;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Transmits 9 bit data through the UART4 peripheral.
@@ -551,6 +586,8 @@ void UART4_SendData9(uint16_t Data)
   UART4->DR   = (uint8_t)(Data);
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Transmits break characters.
   * @param  None
@@ -560,6 +597,8 @@ void UART4_SendBreak(void)
 {
   UART4->CR2 |= UART4_CR2_SBK;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the address of the UART4 node.
@@ -577,6 +616,8 @@ void UART4_SetAddress(uint8_t UART4_Address)
   UART4->CR4 |= UART4_Address;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Sets the specified UART4 guard time.
   * @note   SmartCard Mode should be Enabled
@@ -588,6 +629,8 @@ void UART4_SetGuardTime(uint8_t UART4_GuardTime)
   /* Set the UART4 guard time */
   UART4->GTR = UART4_GuardTime;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Sets the system clock prescaler.
@@ -616,6 +659,8 @@ void UART4_SetPrescaler(uint8_t UART4_Prescaler)
   /* Load the UART4 prescaler value*/
   UART4->PSCR = UART4_Prescaler;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified UART4 flag is set or not.
@@ -688,6 +733,8 @@ FlagStatus UART4_GetFlagStatus(UART4_Flag_TypeDef UART4_FLAG)
   return  status;
 }
 
+// <--#SPLIT#--> //
+
 /**
   * @brief  Clears the UART4 flags.
   * @param  UART4_FLAG specifies the flag to clear
@@ -741,6 +788,8 @@ void UART4_ClearFlag(UART4_Flag_TypeDef UART4_FLAG)
     UART4->CR6 &= (uint8_t)(~UART4_CR6_LSF);
   }
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Checks whether the specified UART4 interrupt has occurred or not.
@@ -842,6 +891,8 @@ ITStatus UART4_GetITStatus(UART4_IT_TypeDef UART4_IT)
   /* Return the UART4_IT status*/
   return  pendingbitstatus;
 }
+
+// <--#SPLIT#--> //
 
 /**
   * @brief  Clears the UART4 pending flags.
