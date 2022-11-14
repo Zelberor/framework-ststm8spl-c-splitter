@@ -6,6 +6,7 @@ and [MCD-ST Liberty SW License Agreement V2.pdf](MCD-ST%20Liberty%20SW%20License
 
 ## Modifications
 * Patched with [this](https://github.com/gicking/STM8-SPL_SDCC_patch/blob/cf8dcd8fe4d0f794cd239e4fb98fece10c184f3a/STM8S_StdPeriph_Lib_V2.3.1_sdcc.patch) patch
+* Adjusted [stm8s.h](src/stm8s.h) with some fixes from [sduino](https://github.com/tenbaht/sduino)
 
 
 
