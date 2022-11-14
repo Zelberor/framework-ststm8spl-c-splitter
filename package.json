@@ -1,6 +1,6 @@
 {
 	"name": "framework-ststm8spl-c-splitter",
-	"version": "0.0.1",
+	"version": "development",
 	"description": "Standard peripheral library for ST STM8S/A microcontrollers",
 	"keywords": [
 		"framework",
