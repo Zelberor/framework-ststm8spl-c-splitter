@@ -52,10 +52,15 @@ static ITStatus CheckITStatus(uint8_t CAN_Reg, uint8_t It_Bit);
 
 /* Private variables ---------------------------------------------------------*/
 __IO uint32_t _Id = 0;
+// <--#SPLIT#--> //
 __IO uint8_t _IDE = 0;
+// <--#SPLIT#--> //
 __IO uint8_t _RTR = 0;
+// <--#SPLIT#--> //
 __IO uint8_t _DLC = 0;
+// <--#SPLIT#--> //
 __IO uint8_t _Data[8] = {0};
+// <--#SPLIT#--> //
 __IO uint8_t _FMI = 0;
 
 /* Private functions ---------------------------------------------------------*/

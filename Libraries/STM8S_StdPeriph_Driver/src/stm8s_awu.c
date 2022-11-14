@@ -55,7 +55,7 @@ CONST uint8_t APR_Array[17] =
     {
         0, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 61, 23, 23, 62
     };
-
+// <--#SPLIT#--> //
 /** Contains the different values to write in the TBR register (used by AWU_Init function) */
 CONST uint8_t TBR_Array[17] =
     {
